@@ -150,6 +150,8 @@ download the .zip and go to the that directory in the console
 ```bash
 
 docker-compose up -d                  # run containers
+docker-compose ps #call runs
+curl http://localhost:5000 #try this endoint to see if flask works
 python crear_datos.py     # BD
 python demo_flow.py                   # Demo
 
