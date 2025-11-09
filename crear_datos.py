@@ -88,7 +88,9 @@ def obtener_productos(db):
     with open("productos.json",'r',encoding='utf-8') as f:
         datos = json.load(f)
     print(f"\n[2/4] Obteniendo productos...")
-    db.products.insert_many(datos)
+    for d in datos:
+        d['fecha_creacion']=datetime.now(timezone.utc)
+        db.products.insert_one(d)
     productos=list(db.products.find())
     print(f"  ✓ {len(productos)} productos encontrados")
     return productos
