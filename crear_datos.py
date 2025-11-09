@@ -90,6 +90,7 @@ def obtener_productos(db):
     print(f"\n[2/4] Obteniendo productos...")
     for d in datos:
         d['fecha_creacion']=datetime.now(timezone.utc)
+        d['genero']="unisex"
         db.products.insert_one(d)
     productos=list(db.products.find())
     print(f"  ✓ {len(productos)} productos encontrados")
