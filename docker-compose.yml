@@ -31,6 +31,7 @@ services:
     environment:
       - FLASK_ENV=development
       - MONGO_URI=mongodb://mongo:27017/tienda_tenis
+      - MONGO_DB_NAME:tienda_tenis
     depends_on:
       mongo:
         condition: service_healthy
