@@ -26,4 +26,4 @@ COPY . .
 EXPOSE 5000
 
 # Comando por defecto (sobrescrito en docker-compose)
-CMD ["python", "app.py"]
+CMD ["python", "run.py"]
