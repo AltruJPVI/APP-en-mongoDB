@@ -27,7 +27,6 @@ class StockPorTalla(BaseModel):
 # Schema para CREAR producto
 class ProductCreate(BaseModel):
     nombre: str = Field(..., min_length=2, max_length=200)
-    descripcion: str 
     precio: float = Field(..., gt=0)  # Mayor que 0
     marca: str 
     categoria: CategoriaProducto
@@ -74,7 +73,6 @@ class ProductCreate(BaseModel):
 class ProductResponse(BaseModel):
     id: str = Field(..., alias="_id")
     nombre: str
-    descripcion: str
     precio: float
     marca: str
     categoria: CategoriaProducto
@@ -102,7 +100,6 @@ class ProductResponse(BaseModel):
 # Schema para ACTUALIZAR producto
 class ProductUpdate(BaseModel):
     nombre: Optional[str] = Field(None, min_length=2, max_length=200)
-    descripcion: Optional[str] = None
     precio: Optional[float] = Field(None, gt=0)
     marca: Optional[str] = None
     categoria: Optional[CategoriaProducto] = None
