@@ -2,13 +2,13 @@
 
 REST API for an online tennis store with social features (posts, comments, events).
 
-## 🎯 Key Features
+## Key Features
 
 ### **Functionalities**
-- 🛒 **E-commerce:** Products, cart, orders with ACID transactions
-- 💬 **Social:** Posts, comments, like system
-- 👥 **Users:** Registration, login, profiles (user, company, admin)
-- 🔒 **Permissions:** Role-based system with verification on each endpoint
+- **E-commerce:** Products, cart, orders with ACID transactions
+- **Social:** Posts, comments, like system
+- **Users:** Registration, login, profiles (user, company, admin)
+- **Permissions:** Role-based system with verification on each endpoint
 
 ### **Technologies**
 - **Backend:** Flask + Python
@@ -18,7 +18,7 @@ REST API for an online tennis store with social features (posts, comments, event
 
 ---
 
-## 🗄️ Why MongoDB?
+## Why MongoDB?
 
 ### **1. Flexible Schema**
 ```python
@@ -73,7 +73,7 @@ db.products.aggregate([
 
 ---
 
-## ⚛️ ACID Transactions in MongoDB
+## ACID Transactions in MongoDB
 
 ### **What are they?**
 Guarantee that multiple operations execute **completely or not at all**:
@@ -120,10 +120,10 @@ Set of MongoDB servers that maintain the same data:
 ```
 
 #### **Advantages:**
-- ✅ **High availability:** If primary fails, a new one is elected automatically
-- ✅ **ACID transactions:** Only work with replica sets
-- ✅ **Backups:** Real-time replicas
-- ✅ **Read scalability:** Distribute queries
+- **High availability:** If primary fails, a new one is elected automatically
+- **ACID transactions:** Only work with replica sets
+- **Backups:** Real-time replicas
+- **Read scalability:** Distribute queries
 
 
 
@@ -131,21 +131,21 @@ Set of MongoDB servers that maintain the same data:
 
 ## 📊 MongoDB Features Implemented
 
-| Feature | Implemented |
-|---------|--------------|
-| Pydantic Schema | ✅ |
-| Operators ($set, $inc, $pull, $push) | ✅ |
-| Aggregation Pipeline | ✅ |
-| ACID Transactions | ✅ |
-| Denormalization (comment cache) | ✅ |
-| Pagination (skip/limit) | ✅ |
-| Complex Filters | ✅ |
-| Replica Set | ✅ |
+| Feature | 
+|---------|
+| Pydantic Schema |
+| Operators ($set, $inc, $pull, $push) |
+| Aggregation Pipeline | 
+| ACID Transactions | 
+| Denormalization (comment cache) | 
+| Pagination (skip/limit) |
+| Complex Filters | 
+| Replica Set | 
 
 
 ---
 
-## 🚀 Run
+##  Run
 download the .zip and go to the that directory in the console
 ```bash
 
@@ -168,7 +168,7 @@ install mongoDB for VS Code if you want to try to query
 
 ---
 
-## 📈 Test Data
+## Test Data
 
 - **Users:** 50,003 (1 admin, 2 companies, 50,000 users)
 - **Posts:** 2,000
@@ -177,20 +177,7 @@ install mongoDB for VS Code if you want to try to query
 
 ---
 
-## 🔐 Roles and Permissions
-
-| Action | user | company | admin |
-|--------|------|---------|-------|
-| View products | ✅ | ✅ | ✅ |
-| Create product | ❌ | ✅ | ✅ |
-| Create post | ✅ | ✅ | ✅ |
-| Delete own post | ✅ | ✅ | ✅ |
-| Delete any post | ❌ | ❌ | ✅ |
-| View all orders | ❌ | ❌ | ✅ |
-
----
-
-## 📝 Main Endpoints
+## Main Endpoints
 
 ```
 --USUARIOS--
