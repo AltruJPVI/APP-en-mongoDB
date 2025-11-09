@@ -93,7 +93,7 @@ def login():
         
         # 4. Login exitoso
         user['_id'] = str(user['_id'])
-        user.pop('contraseña')  # No devolver contraseña
+        user.pop('password')  # No devolver contraseña
         
         user_response = UserResponse(**user)
         
