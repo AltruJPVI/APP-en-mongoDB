@@ -45,7 +45,7 @@ class UserCreate(BaseModel):
 
 class UserLogin(BaseModel):
     email: EmailStr
-    contraseña: str
+    password: str
 
 class UserResponse(BaseModel):#valida las respuestas por si acaso
     id: str = Field(..., alias="_id")  # MongoDB usa _id, lo convertimos a id
