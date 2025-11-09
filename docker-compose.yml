@@ -30,8 +30,9 @@ services:
       - "5000:5000"
     environment:
       - FLASK_ENV=development
-      - MONGO_URI=mongodb://mongo:27017/tienda_tenis
-      - MONGO_DB_NAME:tienda_tenis
+      - MONGO_URI=mongodb://admin:123456@mongo:27017/tienda_tenis?authSource=admin
+      - MONGO_DB_NAME=tienda_tenis  # ← Cambiado : por =
+
     depends_on:
       mongo:
         condition: service_healthy
