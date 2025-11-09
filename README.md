@@ -157,6 +157,7 @@ docker-compose logs -f api       #see the histoy of the app
 docker-compose exec api python crear_datos.py #create and insert data
 
 docker-compose exec mongo mongosh -u admin -p 123456 # Run mongo's terminal for querying
+write exit to shut down mongo's terminal
 
 
 
