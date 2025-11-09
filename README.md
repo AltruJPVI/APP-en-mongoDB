@@ -153,12 +153,10 @@ docker-compose up -d                  # run containers
 docker-compose ps                #see if all containers runs
 curl http://localhost:5000       #try this endoint to see if flask works
 docker-compose logs -f api       #see the histoy of the app
-python crear_datos.py     # BD
-python demo_flow.py                   # Demo
 
+docker-compose exec api python crear_datos.py #create and insert data
 
-#Run mongoDB
-docker exec -it tienda_tenis mongosh -u admin -p 123456
+docker exec -it tienda_tenis mongosh -u admin -p 123456 #run the database
 
 
 
