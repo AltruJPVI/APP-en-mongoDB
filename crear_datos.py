@@ -5,10 +5,11 @@ from datetime import datetime, timedelta, timezone
 import random
 from bson import ObjectId
 import json
+import os
 
 # Configuración
-MONGO_URI = "mongodb://admin:123456@localhost:27017/"
-DB_NAME = "tienda_tenis"
+MONGO_URI = os.getenv('MONGO_URI')
+DB_NAME = os.getenv('MONGO_DB_NAME')
 BATCH_SIZE = 1000
 
 fake = Faker('es_ES')
