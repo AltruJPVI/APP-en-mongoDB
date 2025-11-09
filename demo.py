@@ -7,7 +7,7 @@ Registra usuario → Login → Ver productos → Carrito → Pedido
 import requests
 import time
 
-API = "http://localhost:5000/api"
+API = "http://api:5000/api"
 
 def print_step(msg):
     print(f"\n{'='*60}\n{msg}\n{'='*60}")
