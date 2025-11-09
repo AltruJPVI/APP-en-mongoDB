@@ -29,7 +29,6 @@ def crear_producto():
     POST /api/productos
     Body: {
         "nombre": "Raqueta Wilson Pro",
-        "descripcion": "Raqueta profesional...",
         "precio": 120.50,
         "marca": "Wilson",
         "categoria": "raquetas",
