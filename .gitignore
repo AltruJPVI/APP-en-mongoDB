@@ -1,0 +1,15 @@
+# Entornos virtuales
+venv/
+__pycache__/
+
+# Archivos de configuración privada
+.env
+
+# Archivos del sistema
+.DS_Store
+
+# Archivos de compilación
+*.pyc
+
+# Archivos de log
+*.log

@@ -1,0 +1,977 @@
+[
+  {
+    "nombre": "Wilson Pro Staff RF97 Autograph",
+    "descripcion": "Raqueta profesional de 97 pulgadas usada por Roger Federer. Perfecta para jugadores avanzados que buscan máxima precisión y control.",
+    "precio": 259.99,
+    "marca": "Wilson",
+    "stock": 5,
+    "categoria": "raquetas",
+    "imagenes": [
+      "/imagenes/Wilson_Pro_Staff_RF97_Autograph.jpg"
+    ],
+    "activo": true,
+    "especificaciones": {
+      "peso": "340g",
+      "balance": "310mm",
+      "longitud": "27 pulgadas",
+      "tamano_cabeza": "97 pulgadas²",
+      "patron_encordado": "16x19",
+      "grosor_perfil": "21.5mm",
+      "rigidez": "68 RA"
+    }
+  },
+  {
+    "nombre": "Head Radical MP 2023",
+    "descripcion": "Raqueta versátil y potente, ideal para jugadores intermedios-avanzados que buscan un equilibrio entre control y potencia.",
+    "precio": 189.99,
+    "marca": "Head",
+    "stock": 12,
+    "categoria": "raquetas",
+    "imagenes": [
+      "/imagenes/Head_Radical_MP_2023.jpg"
+    ],
+    "activo": true,
+    "especificaciones": {
+      "peso": "295g",
+      "balance": "320mm",
+      "longitud": "27 pulgadas",
+      "tamano_cabeza": "100 pulgadas²",
+      "patron_encordado": "16x19",
+      "grosor_perfil": "23mm",
+      "rigidez": "70 RA"
+    }
+  },
+  {
+    "nombre": "Babolat Pure Drive 2023",
+    "descripcion": "La raqueta más popular del mundo. Combina potencia explosiva con gran tolerancia, perfecta para jugadores intermedios.",
+    "precio": 219.99,
+    "marca": "Babolat",
+    "stock": 8,
+    "categoria": "raquetas",
+    "imagenes": [
+      "/imagenes/Babolat_Pure_Drive_2023.jpg"
+    ],
+    "activo": true,
+    "especificaciones": {
+      "peso": "300g",
+      "balance": "320mm",
+      "longitud": "27 pulgadas",
+      "tamano_cabeza": "100 pulgadas²",
+      "patron_encordado": "16x19",
+      "grosor_perfil": "23-26mm",
+      "rigidez": "72 RA"
+    }
+  },
+  {
+    "nombre": "Yonex EZONE 100 Blue",
+    "descripcion": "Raqueta con gran confort y sensación de bola. Perfecta para jugadores que buscan una experiencia de juego suave y potente.",
+    "precio": 199.99,
+    "marca": "Yonex",
+    "stock": 6,
+    "categoria": "raquetas",
+    "imagenes": [
+      "/imagenes/Yonex_EZONE_100_Blue.jpg"
+    ],
+    "activo": true,
+    "especificaciones": {
+      "peso": "300g",
+      "balance": "320mm",
+      "longitud": "27 pulgadas",
+      "tamano_cabeza": "100 pulgadas²",
+      "patron_encordado": "16x19",
+      "grosor_perfil": "23.8-26.5mm",
+      "rigidez": "65 RA"
+    }
+  },
+  {
+    "nombre": "Wilson Clash 100 V2",
+    "descripcion": "Raqueta revolucionaria ultra flexible que combina potencia y control. Ideal para principiantes-intermedios que buscan confort.",
+    "precio": 179.99,
+    "marca": "Wilson",
+    "stock": 8,
+    "categoria": "raquetas",
+    "imagenes": [
+      "/imagenes/Wilson_Clash_100_V2.jpg"
+    ],
+    "activo": true,
+    "especificaciones": {
+      "peso": "295g",
+      "balance": "315mm",
+      "longitud": "27 pulgadas",
+      "tamano_cabeza": "100 pulgadas²",
+      "patron_encordado": "16x19",
+      "grosor_perfil": "24.5mm",
+      "rigidez": "55 RA"
+    }
+  },
+  {
+    "nombre": "Nike Court Zoom Vapor Pro",
+    "descripcion": "Zapatillas de alto rendimiento para tierra batida. Diseñadas para jugadores que necesitan tracción máxima en superficies lentas.",
+    "precio": 129.99,
+    "marca": "Nike",
+    "genero": "hombre",
+    "categoria": "zapatillas",
+    "color": "blanco/azul",
+    "imagenes": [
+      "/imagenes/Nike_Court_Zoom_Vapor_Pro.jpg"
+    ],
+    "activo": true,
+    "tallas": [
+      "40",
+      "41",
+      "42",
+      "43",
+      "44"
+    ],
+    "stocks": [
+      {
+        "talla": "40",
+        "stock": 5
+      },
+      {
+        "talla": "41",
+        "stock": 10
+      },
+      {
+        "talla": "42",
+        "stock": 12
+      },
+      {
+        "talla": "43",
+        "stock": 8
+      },
+      {
+        "talla": "44",
+        "stock": 3
+      }
+    ],
+    "especificaciones": {
+      "superficie": "tierra batida",
+      "tipo_suela": "espiga",
+      "tecnologia": "Zoom Air",
+      "material_superior": "mesh sintético",
+      "soporte": "medio-alto",
+      "peso": "350g"
+    }
+  },
+  {
+    "nombre": "Adidas Barricade 13",
+    "descripcion": "Máxima durabilidad y estabilidad para jugadores agresivos. Ideales para pistas duras con juego intenso.",
+    "precio": 139.99,
+    "marca": "Adidas",
+    "genero": "hombre",
+    "categoria": "zapatillas",
+    "color": "negro/rojo",
+    "imagenes": [
+      "/imagenes/Adidas_Barricade_13.jpg"
+    ],
+    "activo": true,
+    "tallas": [
+      "40",
+      "41",
+      "42",
+      "43",
+      "44"
+    ],
+    "stocks": [
+      {
+        "talla": "40",
+        "stock": 5
+      },
+      {
+        "talla": "41",
+        "stock": 10
+      },
+      {
+        "talla": "42",
+        "stock": 12
+      },
+      {
+        "talla": "43",
+        "stock": 8
+      },
+      {
+        "talla": "44",
+        "stock": 3
+      }
+    ],
+    "especificaciones": {
+      "superficie": "pista dura",
+      "tipo_suela": "omni",
+      "tecnologia": "Boost",
+      "material_superior": "Adituff",
+      "soporte": "alto",
+      "peso": "420g"
+    }
+  },
+  {
+    "nombre": "Asics Gel-Resolution 9",
+    "descripcion": "Comodidad excepcional con amortiguación GEL. Perfectas para largas sesiones de entrenamiento en cualquier superficie.",
+    "precio": 119.99,
+    "marca": "Asics",
+    "genero": "hombre",
+    "categoria": "zapatillas",
+    "color": "azul marino/blanco",
+    "imagenes": [
+      "/imagenes/Asics_Gel-Resolution_9.jpg"
+    ],
+    "activo": true,
+    "tallas": [
+      "40",
+      "41",
+      "42",
+      "43",
+      "44"
+    ],
+    "stocks": [
+      {
+        "talla": "40",
+        "stock": 5
+      },
+      {
+        "talla": "41",
+        "stock": 10
+      },
+      {
+        "talla": "42",
+        "stock": 12
+      },
+      {
+        "talla": "43",
+        "stock": 8
+      },
+      {
+        "talla": "44",
+        "stock": 3
+      }
+    ],
+    "especificaciones": {
+      "superficie": "todas",
+      "tipo_suela": "multiproposito",
+      "tecnologia": "GEL en talón y antepié",
+      "material_superior": "mesh técnico",
+      "soporte": "medio",
+      "peso": "380g"
+    }
+  },
+  {
+    "nombre": "Nike Court Air Zoom Vapor Cage 4",
+    "descripcion": "Zapatillas versátiles con soporte lateral reforzado. Diseñadas para jugadoras que buscan agilidad y respuesta rápida.",
+    "precio": 134.99,
+    "marca": "Nike",
+    "genero": "mujer",
+    "categoria": "zapatillas",
+    "color": "blanco/rosa",
+    "imagenes": [
+      "/imagenes/Nike_Court_Air_Zoom_Vapor_Cage_4.jpg"
+    ],
+    "activo": true,
+    "tallas": [
+      "36",
+      "37",
+      "38",
+      "39",
+      "40"
+    ],
+    "stocks": [
+      {
+        "talla": "36",
+        "stock": 5
+      },
+      {
+        "talla": "37",
+        "stock": 10
+      },
+      {
+        "talla": "38",
+        "stock": 12
+      },
+      {
+        "talla": "39",
+        "stock": 8
+      },
+      {
+        "talla": "40",
+        "stock": 3
+      }
+    ],
+    "especificaciones": {
+      "superficie": "pista dura",
+      "tipo_suela": "dura resistente",
+      "tecnologia": "Zoom Air",
+      "material_superior": "cuero sintético",
+      "soporte": "alto",
+      "peso": "340g"
+    }
+  },
+  {
+    "nombre": "Adidas SoleCourt Boost",
+    "descripcion": "Retorno de energía excepcional con tecnología Boost. Perfectas para jugadoras de todos los niveles en tierra batida.",
+    "precio": 109.99,
+    "marca": "Adidas",
+    "genero": "mujer",
+    "categoria": "zapatillas",
+    "color": "púrpura/blanco",
+    "imagenes": [
+      "/imagenes/Adidas_SoleCourt_Boost.jpg"
+    ],
+    "activo": true,
+    "tallas": [
+      "36",
+      "37",
+      "38",
+      "39",
+      "40"
+    ],
+    "stocks": [
+      {
+        "talla": "36",
+        "stock": 5
+      },
+      {
+        "talla": "37",
+        "stock": 10
+      },
+      {
+        "talla": "38",
+        "stock": 12
+      },
+      {
+        "talla": "39",
+        "stock": 8
+      },
+      {
+        "talla": "40",
+        "stock": 3
+      }
+    ],
+    "especificaciones": {
+      "superficie": "tierra batida",
+      "tipo_suela": "espiga",
+      "tecnologia": "Boost",
+      "material_superior": "textil transpirable",
+      "soporte": "medio",
+      "peso": "330g"
+    }
+  },
+  {
+    "nombre": "New Balance Fresh Foam Lav V2",
+    "descripcion": "Ligereza y amortiguación premium. Ideales para jugadoras que priorizan la comodidad sin sacrificar rendimiento.",
+    "precio": 124.99,
+    "marca": "New Balance",
+    "genero": "mujer",
+    "categoria": "zapatillas",
+    "color": "coral/gris",
+    "imagenes": [
+      "/imagenes/New_Balance_Fresh_Foam_Lav_V2.jpg"
+    ],
+    "activo": true,
+    "tallas": [
+      "36",
+      "37",
+      "38",
+      "39",
+      "40"
+    ],
+    "stocks": [
+      {
+        "talla": "36",
+        "stock": 5
+      },
+      {
+        "talla": "37",
+        "stock": 10
+      },
+      {
+        "talla": "38",
+        "stock": 12
+      },
+      {
+        "talla": "39",
+        "stock": 8
+      },
+      {
+        "talla": "40",
+        "stock": 3
+      }
+    ],
+    "especificaciones": {
+      "superficie": "todas",
+      "tipo_suela": "no marking",
+      "tecnologia": "Fresh Foam",
+      "material_superior": "malla Hypoknit",
+      "soporte": "bajo-medio",
+      "peso": "310g"
+    }
+  },
+  {
+    "nombre": "Nike Court Advantage Dri-FIT Cap",
+    "descripcion": "Gorra clásica de tenis con tecnología Dri-FIT para mantener la cabeza fresca y seca durante el juego.",
+    "precio": 24.99,
+    "marca": "Nike",
+    "genero": "unisex",
+    "stock": 35,
+    "categoria": "gorras",
+    "color": "negro",
+    "imagenes": [
+      "/imagenes/Nike_Court_Advantage_Dri-FIT_Cap.jpg"
+    ],
+    "activo": true,
+    "especificaciones": {
+      "tipo": "baseball",
+      "ajuste": "correa trasera regulable",
+      "material": "100% poliéster reciclado",
+      "tecnologia": "Dri-FIT",
+      "proteccion_uv": "UPF 40+",
+      "visera": "curva preformada",
+      "transpirable": true
+    }
+  },
+  {
+    "nombre": "Adidas Aeroready Baseball Cap",
+    "descripcion": "Gorra ligera con tecnología de absorción de humedad. Perfecta para entrenamientos intensos bajo el sol.",
+    "precio": 19.99,
+    "marca": "Adidas",
+    "genero": "unisex",
+    "stock": 42,
+    "categoria": "gorras",
+    "color": "blanco",
+    "imagenes": [
+      "/imagenes/Adidas_Aeroready_Baseball_Cap.jpg"
+    ],
+    "activo": true,
+    "especificaciones": {
+      "tipo": "baseball",
+      "ajuste": "correa de velcro",
+      "material": "poliéster reciclado",
+      "tecnologia": "AEROREADY",
+      "proteccion_uv": "UPF 50+",
+      "visera": "curva",
+      "transpirable": true
+    }
+  },
+  {
+    "nombre": "Wilson Tour Performance Visor",
+    "descripcion": "Visera deportiva ultraligera que mantiene el sol fuera de los ojos sin calentar la cabeza.",
+    "precio": 16.99,
+    "marca": "Wilson",
+    "genero": "unisex",
+    "stock": 28,
+    "categoria": "gorras",
+    "color": "azul marino",
+    "imagenes": [
+      "/imagenes/Wilson_Tour_Performance_Visor.jpg"
+    ],
+    "activo": true,
+    "especificaciones": {
+      "tipo": "visera",
+      "ajuste": "banda elástica ajustable",
+      "material": "poliéster con mesh",
+      "tecnologia": "moisture wicking",
+      "proteccion_uv": "UPF 30+",
+      "visera": "ancha y rígida",
+      "transpirable": true
+    }
+  },
+  {
+    "nombre": "Wilson US Open Extra Duty",
+    "descripcion": "Pelotas oficiales del US Open para pistas duras. Máxima durabilidad y consistencia en el rebote.",
+    "precio": 4.99,
+    "marca": "Wilson",
+    "stock": 150,
+    "categoria": "pelotas",
+    "imagenes": [
+      "/imagenes/Wilson_US_Open_Extra_Duty.jpg"
+    ],
+    "activo": true,
+    "especificaciones": {
+      "unidades": 3,
+      "tipo": "extra duty",
+      "superficie": "pista dura",
+      "presion": "presurizadas",
+      "aprobacion": "ITF",
+      "color": "amarillo",
+      "fieltro": "tejido extra grueso"
+    }
+  },
+  {
+    "nombre": "Head ATP Official",
+    "descripcion": "Pelotas oficiales del circuito ATP. Perfectas para todo tipo de superficies y niveles de juego.",
+    "precio": 5.49,
+    "marca": "Head",
+    "stock": 120,
+    "categoria": "pelotas",
+    "imagenes": [
+      "/imagenes/Head_ATP_Official.jpg"
+    ],
+    "activo": true,
+    "especificaciones": {
+      "unidades": 4,
+      "tipo": "regular duty",
+      "superficie": "todas",
+      "presion": "presurizadas",
+      "aprobacion": "ITF",
+      "color": "amarillo",
+      "fieltro": "SmartOptik"
+    }
+  },
+  {
+    "nombre": "Dunlop Fort All Court",
+    "descripcion": "Excelente relación calidad-precio. Ideales para entrenamientos en cualquier superficie.",
+    "precio": 3.99,
+    "marca": "Dunlop",
+    "stock": 200,
+    "categoria": "pelotas",
+    "imagenes": [
+      "/imagenes/Dunlop_Fort_All_Court.jpg"
+    ],
+    "activo": true,
+    "especificaciones": {
+      "unidades": 4,
+      "tipo": "all court",
+      "superficie": "todas",
+      "presion": "presurizadas",
+      "aprobacion": "ITF",
+      "color": "amarillo",
+      "fieltro": "HD Core"
+    }
+  },
+  {
+    "nombre": "Babolat Gold Championship",
+    "descripcion": "Pelotas premium para tierra batida. Duración excepcional en arcilla.",
+    "precio": 5.99,
+    "marca": "Babolat",
+    "stock": 90,
+    "categoria": "pelotas",
+    "imagenes": [
+      "/imagenes/Babolat_Gold_Championship.jpg"
+    ],
+    "activo": true,
+    "especificaciones": {
+      "unidades": 4,
+      "tipo": "championship",
+      "superficie": "tierra batida",
+      "presion": "presurizadas",
+      "aprobacion": "ITF y FFT",
+      "color": "amarillo",
+      "fieltro": "Tex3Tech"
+    }
+  },
+  {
+    "nombre": "Penn Championship Regular Duty",
+    "descripcion": "Pelotas clásicas americanas. Perfectas para pistas de tierra batida y jugadores principiantes.",
+    "precio": 3.49,
+    "marca": "Penn",
+    "stock": 180,
+    "categoria": "pelotas",
+    "imagenes": [
+      "/imagenes/Penn_Championship_Regular_Duty.jpg"
+    ],
+    "activo": true,
+    "especificaciones": {
+      "unidades": 3,
+      "tipo": "regular duty",
+      "superficie": "tierra batida",
+      "presion": "presurizadas",
+      "aprobacion": "USTA",
+      "color": "amarillo",
+      "fieltro": "natural"
+    }
+  },
+  {
+    "nombre": "Head Tour Team 12R Monstercombi",
+    "descripcion": "Raquetero espacioso con capacidad para 12 raquetas. Compartimento térmico para protección contra temperaturas extremas.",
+    "precio": 89.99,
+    "marca": "Head",
+    "stock": 8,
+    "categoria": "raqueteros",
+    "color": "negro/azul",
+    "imagenes": [
+      "/imagenes/Head_Tour_Team_12R_Monstercombi.jpg"
+    ],
+    "activo": true,
+    "especificaciones": {
+      "capacidad_raquetas": 12,
+      "compartimentos": 3,
+      "dimensiones": "75 x 40 x 35 cm",
+      "volumen": "105 litros",
+      "bolsillo_termico": true,
+      "material": "poliéster 600D",
+      "correas": "acolchadas ajustables",
+      "peso": "1.2kg",
+      "bolsillos_accesorios": 2
+    }
+  },
+  {
+    "nombre": "Wilson Super Tour 2 Comp",
+    "descripcion": "Mochila profesional con dos compartimentos principales. Diseño ergonómico para máximo confort.",
+    "precio": 74.99,
+    "marca": "Wilson",
+    "stock": 12,
+    "categoria": "raqueteros",
+    "color": "negro/rojo",
+    "imagenes": [
+      "/imagenes/Wilson_Super_Tour_2_Comp.jpg"
+    ],
+    "activo": true,
+    "especificaciones": {
+      "capacidad_raquetas": 9,
+      "compartimentos": 2,
+      "dimensiones": "70 x 33 x 30 cm",
+      "volumen": "69 litros",
+      "bolsillo_termico": true,
+      "material": "poliéster resistente",
+      "correas": "tipo mochila acolchadas",
+      "peso": "0.9kg",
+      "bolsillos_accesorios": 3
+    }
+  },
+  {
+    "nombre": "Babolat Pure Strike RH12",
+    "descripcion": "Raquetero de alta capacidad con diseño moderno. Ideal para jugadores de competición.",
+    "precio": 79.99,
+    "marca": "Babolat",
+    "stock": 10,
+    "categoria": "raqueteros",
+    "color": "blanco/negro/rojo",
+    "imagenes": [
+      "/imagenes/Babolat_Pure_Strike_RH12.jpg"
+    ],
+    "activo": true,
+    "especificaciones": {
+      "capacidad_raquetas": 12,
+      "compartimentos": 3,
+      "dimensiones": "76 x 39 x 36 cm",
+      "volumen": "107 litros",
+      "bolsillo_termico": true,
+      "material": "poliéster premium",
+      "correas": "acolchadas reforzadas",
+      "peso": "1.3kg",
+      "bolsillos_accesorios": 4
+    }
+  },
+  {
+    "nombre": "Nike Swoosh Wristbands",
+    "descripcion": "Muñequeras clásicas de algodón absorbente. Par de muñequeras con el icónico logo Swoosh.",
+    "precio": 9.99,
+    "marca": "Nike",
+    "genero": "unisex",
+    "stock": 50,
+    "categoria": "munequeras",
+    "color": "blanco",
+    "imagenes": [
+      "/imagenes/Nike_Swoosh_Wristbands.jpg"
+    ],
+    "activo": true,
+    "especificaciones": {
+      "unidades": 2,
+      "material": "80% algodón, 15% nylon, 5% elastano",
+      "largo": "8cm",
+      "ancho": "7cm",
+      "lavable": true,
+      "absorcion": "alta",
+      "elasticidad": "media"
+    }
+  },
+  {
+    "nombre": "Adidas Tennis Wristband Large",
+    "descripcion": "Muñequeras extra largas para máxima absorción. Ideales para jugadores que sudan mucho.",
+    "precio": 11.99,
+    "marca": "Adidas",
+    "genero": "unisex",
+    "stock": 40,
+    "categoria": "munequeras",
+    "color": "negro",
+    "imagenes": [
+      "/imagenes/Adidas_Tennis_Wristband_Large.jpg"
+    ],
+    "activo": true,
+    "especificaciones": {
+      "unidades": 2,
+      "material": "70% algodón, 20% poliéster, 10% elastano",
+      "largo": "12cm",
+      "ancho": "8cm",
+      "lavable": true,
+      "absorcion": "muy alta",
+      "elasticidad": "alta"
+    }
+  },
+  {
+    "nombre": "Wilson Pro Comfort Wristbands",
+    "descripcion": "Muñequeras suaves con ajuste perfecto. Tecnología anti-olor para sesiones largas.",
+    "precio": 8.99,
+    "marca": "Wilson",
+    "genero": "unisex",
+    "stock": 60,
+    "categoria": "munequeras",
+    "color": "azul marino",
+    "imagenes": [
+      "/imagenes/Wilson_Pro_Comfort_Wristbands.jpg"
+    ],
+    "activo": true,
+    "especificaciones": {
+      "unidades": 2,
+      "material": "75% algodón, 20% poliéster, 5% spandex",
+      "largo": "7.5cm",
+      "ancho": "7cm",
+      "lavable": true,
+      "absorcion": "alta",
+      "elasticidad": "media",
+      "tratamiento": "anti-olor"
+    }
+  },
+  {
+    "nombre": "Babolat Jumbo Wristbands",
+    "descripcion": "Muñequeras extragrandes para máximo confort. Perfectas para partidos largos bajo el sol.",
+    "precio": 12.99,
+    "marca": "Babolat",
+    "genero": "unisex",
+    "stock": 35,
+    "categoria": "munequeras",
+    "color": "amarillo",
+    "imagenes": [
+      "/imagenes/Babolat_Jumbo_Wristbands.jpg"
+    ],
+    "activo": true,
+    "especificaciones": {
+      "unidades": 2,
+      "material": "85% algodón, 10% nylon, 5% elastano",
+      "largo": "15cm",
+      "ancho": "9cm",
+      "lavable": true,
+      "absorcion": "extrema",
+      "elasticidad": "alta"
+    }
+  },
+  {
+    "nombre": "Nike Court Dri-FIT Victory",
+    "descripcion": "Camiseta técnica de manga corta con tecnología Dri-FIT. Mantiene el cuerpo seco y fresco durante el juego.",
+    "precio": 34.99,
+    "marca": "Nike",
+    "genero": "hombre",
+    "categoria": "camisetas",
+    "color": "blanco",
+    "imagenes": [
+      "/imagenes/Nike_Court_Dri-FIT_Victory.jpg"
+    ],
+    "activo": true,
+    "tallas": [
+      "S",
+      "M",
+      "L",
+      "XL"
+    ],
+    "stocks": [
+      {
+        "talla": "S",
+        "stock": 8
+      },
+      {
+        "talla": "M",
+        "stock": 15
+      },
+      {
+        "talla": "L",
+        "stock": 12
+      },
+      {
+        "talla": "XL",
+        "stock": 6
+      }
+    ],
+    "especificaciones": {
+      "material": "100% poliéster reciclado",
+      "tecnologia": "Dri-FIT",
+      "manga": "corta",
+      "cuello": "redondo",
+      "ajuste": "regular",
+      "peso_tejido": "140g/m²",
+      "costuras": "planas anti-rozaduras"
+    }
+  },
+  {
+    "nombre": "Adidas Club Tennis Tee",
+    "descripcion": "Camiseta clásica con tecnología AEROREADY. Perfecta para entrenamientos y partidos casuales.",
+    "precio": 29.99,
+    "marca": "Adidas",
+    "genero": "hombre",
+    "categoria": "camisetas",
+    "tipo_producto": "camiseta",
+    "color": "negro",
+    "imagenes": [
+      "/imagenes/Adidas_Club_Tennis_Tee.jpg"
+    ],
+    "activo": true,
+    "tallas": [
+      "S",
+      "M",
+      "L",
+      "XL"
+    ],
+    "stocks": [
+      {
+        "talla": "S",
+        "stock": 10
+      },
+      {
+        "talla": "M",
+        "stock": 18
+      },
+      {
+        "talla": "L",
+        "stock": 14
+      },
+      {
+        "talla": "XL",
+        "stock": 9
+      }
+    ],
+    "especificaciones": {
+      "material": "100% poliéster reciclado",
+      "tecnologia": "AEROREADY",
+      "manga": "corta",
+      "cuello": "redondo",
+      "ajuste": "regular",
+      "peso_tejido": "130g/m²",
+      "costuras": "reforzadas"
+    }
+  },
+  {
+    "nombre": "Lacoste Sport Breathable T-Shirt",
+    "descripcion": "Camiseta premium con el icónico cocodrilo. Tejido ultra transpirable de alta calidad.",
+    "precio": 49.99,
+    "marca": "Lacoste",
+    "genero": "hombre",
+    "categoria": "camisetas",
+    "color": "azul marino",
+    "imagenes": [
+      "/imagenes/Lacoste_Sport_Breathable_T-Shirt.jpg"
+    ],
+    "activo": true,
+    "tallas": [
+      "S",
+      "M",
+      "L",
+      "XL"
+    ],
+    "stocks": [
+      {
+        "talla": "S",
+        "stock": 6
+      },
+      {
+        "talla": "M",
+        "stock": 12
+      },
+      {
+        "talla": "L",
+        "stock": 10
+      },
+      {
+        "talla": "XL",
+        "stock": 5
+      }
+    ],
+    "especificaciones": {
+      "material": "100% poliéster técnico",
+      "tecnologia": "Ultra Dry",
+      "manga": "corta",
+      "cuello": "redondo",
+      "ajuste": "regular",
+      "peso_tejido": "150g/m²",
+      "costuras": "planas premium"
+    }
+  },
+  {
+    "nombre": "Wilson Team Seamless Crew",
+    "descripcion": "Camiseta sin costuras para máximo confort. Ideal para jugadores exigentes.",
+    "precio": 39.99,
+    "marca": "Wilson",
+    "genero": "mujer",
+    "categoria": "camisetas",
+    "color": "rosa",
+    "imagenes": [
+      "/imagenes/Wilson_Team_Seamless_Crew.jpg"
+    ],
+    "activo": true,
+    "tallas": [
+      "S",
+      "M",
+      "L",
+      "XL"
+    ],
+    "stocks": [
+      {
+        "talla": "S",
+        "stock": 12
+      },
+      {
+        "talla": "M",
+        "stock": 16
+      },
+      {
+        "talla": "L",
+        "stock": 11
+      },
+      {
+        "talla": "XL",
+        "stock": 7
+      }
+    ],
+    "especificaciones": {
+      "material": "88% poliéster, 12% elastano",
+      "tecnologia": "NanoWik",
+      "manga": "corta",
+      "cuello": "redondo",
+      "ajuste": "entallado",
+      "peso_tejido": "135g/m²",
+      "costuras": "sin costuras (seamless)"
+    }
+  },
+  {
+    "nombre": "Head Club Tech T-Shirt",
+    "descripcion": "Camiseta técnica con excelente relación calidad-precio. Perfecta para todo tipo de jugadores.",
+    "precio": 24.99,
+    "marca": "Head",
+    "genero": "mujer",
+    "categoria": "camisetas",
+    "color": "turquesa",
+    "imagenes": [
+      "/imagenes/Head_Club_Tech_T-Shirt.jpg"
+    ],
+    "activo": true,
+    "tallas": [
+      "S",
+      "M",
+      "L",
+      "XL"
+    ],
+    "stocks": [
+      {
+        "talla": "S",
+        "stock": 9
+      },
+      {
+        "talla": "M",
+        "stock": 14
+      },
+      {
+        "talla": "L",
+        "stock": 13
+      },
+      {
+        "talla": "XL",
+        "stock": 8
+      }
+    ],
+    "especificaciones": {
+      "material": "100% poliéster",
+      "tecnologia": "Moisture Transfer Micro-Fiber",
+      "manga": "corta",
+      "cuello": "redondo",
+      "ajuste": "regular",
+      "peso_tejido": "125g/m²",
+      "costuras": "planas"
+    }
+  }
+]
