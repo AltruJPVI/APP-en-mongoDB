@@ -1,19 +1,13 @@
 import os
-from dotenv import load_dotenv
 from pymongo import MongoClient
-#from flask_cors import CORS
-
-load_dotenv()
 
 mongo_client = None
 db = None
-#cors = CORS()
 
 def init_db():
-
     global mongo_client, db
     
-    # Leer del .env
+    # Lee directamente las variables del docker-compose
     mongo_uri = os.getenv('MONGO_URI')
     db_name = os.getenv('MONGO_DB_NAME')
     
