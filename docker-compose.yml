@@ -38,7 +38,7 @@ services:
       - .:/app  # Hot reload - cambios en código se reflejan automáticamente
     networks:
       - tennis_network
-    command: python app.py
+    command: python run.py
 
 networks:
   tennis_network:
