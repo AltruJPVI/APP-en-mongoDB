@@ -34,7 +34,7 @@ class ProductCreate(BaseModel):
     genero: Genero = Genero.unisex
     color: Optional[str] = None
     imagenes: Optional[List[str]] = None
-    activo: True
+    activo: bool=True
     
     # Stock: puede ser simple O por tallas
     stock: Optional[int] = Field(None, ge=0)  # Stock simple
