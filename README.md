@@ -146,11 +146,8 @@ Set of MongoDB servers that maintain the same data:
 ---
 
 ## 🚀 Run
-
+download the .zip and go to the that directory in the console
 ```bash
-
-
-git clone <>
 
 docker-compose up -d                  # run containers
 python crear_datos.py     # BD
