@@ -11,7 +11,7 @@ from app.routes.pedidos import bp as bp_ped
 
 
 def create_app():
-    app = Flask(__name__) #__name__ dentro de __init__.py toma el nombre de la carpeta que lo contiene (app).
+    app,mongo_client = Flask(__name__) #__name__ dentro de __init__.py toma el nombre de la carpeta que lo contiene (app).
     db=init_db()#creamos la instancia de mongoDB
     
     #conexiones
@@ -23,6 +23,7 @@ def create_app():
     app.register_blueprint(bp_post)
 
     app.db=db#le pasamos como variable la base de datos a la app
+    app.mongo_client=mongo_client
     @app.route('/')
     def index():
         return {"message": "API Tienda de Tenis"}
