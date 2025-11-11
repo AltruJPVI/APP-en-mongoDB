@@ -1,4 +1,4 @@
-# STEP BY STEP use of endpoints for creating posts an comments in Postman 
+# STEP BY STEP endpoints in Postman
 
 To create a body, in Postman after you write the URL endopint, choose 'body'->'raw'->JSON and paste it there
 ---
