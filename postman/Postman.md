@@ -1,4 +1,4 @@
-# Some endpoints to try in Postman manually istead of using collections
+# Some endpoints to try in Postman manually instead of using collections
 
 To create a body, in Postman after you wrie the URL endopint, choose 'body'->'raw'->JSON and paste it there
 ---
