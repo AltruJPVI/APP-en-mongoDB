@@ -159,10 +159,9 @@ docker-compose exec api python crear_datos.py #create and insert data
 docker-compose exec mongo mongosh -u admin -p 123456 # Run mongo's terminal for querying
 write exit to shut down mongo's terminal
 
-docker-compose exec api python demo.py #run the demo
+Use the postam collection to try a basic pipeline to make posts, comments and orders 
 
-
-install mongoDB for VS Code if you want to try to query 
+aditionally you can install mongoDB for VS Code if you want to try to query instead of using mongosh 
 
 ```
 
