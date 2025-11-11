@@ -71,7 +71,7 @@ class PostResponse(BaseModel):
     likes: int = 0
     
     # Comentarios/mensajes
-    comentarios_: List[ComentarioReciente] = []
+    comentarios: List[ComentarioReciente] = []
     total_comentarios: int = 0
     class Config:
         populate_by_name = True
