@@ -1,496 +1,280 @@
 {
   "info": {
-    "name": "Tienda Tenis Social API - DEMO",
-    "description": "Colección optimizada para demostrar MongoDB con Flask\n\n**Flujo de demo:**\n1. Setup (Login)\n2. Productos (Queries + Aggregation)\n3. Posts & Comentarios (Cache)\n4. Pedidos (Transacciones ACID)\n5. Permisos",
+    "name": "Tennis API - Complete Flow",
+    "description": "Automatized collection",
     "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
   },
+  "item": [
+    {
+      "name": "1. AUTH - Register User",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "if (pm.response.code === 201 || pm.response.code === 200) {",
+              "    const response = pm.response.json();",
+              "    pm.environment.set('user_id', response._id || response.id);",
+              "    pm.environment.set('user_nombre', response.nombre);",
+              "    console.log('✅ User ID guardado:', pm.environment.get('user_id'));",
+              "}"
+            ]
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"nombre\": \"Juan Pérez\",\n  \"email\": \"juan@email.com\",\n  \"password\": \"1234\",\n  \"clase\": \"user\",\n  \"nivel\": \"intermedio\"\n}"
+        },
+        "url": {
+          "raw": "{{base_url}}/api/auth/register",
+          "host": ["{{base_url}}"],
+          "path": ["api", "auth", "register"]
+        }
+      }
+    },
+    {
+      "name": "2. AUTH - Login",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "if (pm.response.code === 200) {",
+              "    const response = pm.response.json();",
+              "    if (response.token) {",
+              "        pm.environment.set('auth_token', response.token);",
+              "        console.log('✅ Token guardado');",
+              "    }",
+              "}"
+            ]
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"email\": \"juan@email.com\",\n  \"password\": \"1234\"\n}"
+        },
+        "url": {
+          "raw": "{{base_url}}/api/auth/login",
+          "host": ["{{base_url}}"],
+          "path": ["api", "auth", "login"]
+        }
+      }
+    },
+    {
+      "name": "3. POSTS - Create Post",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "if (pm.response.code === 201) {",
+              "    const response = pm.response.json();",
+              "    pm.environment.set('post_id', response._id || response.id);",
+              "    console.log('✅ Post ID guardado:', pm.environment.get('post_id'));",
+              "}"
+            ]
+          }
+        },
+        {
+          "listen": "prerequest",
+          "script": {
+            "exec": [
+              "// Auto-rellenar autor_id y autor_nombre",
+              "const userId = pm.environment.get('user_id');",
+              "const userName = pm.environment.get('user_nombre');",
+              "",
+              "if (userId && userName) {",
+              "    const body = JSON.parse(pm.request.body.raw);",
+              "    body.autor_id = userId;",
+              "    body.autor_nombre = userName;",
+              "    pm.request.body.raw = JSON.stringify(body, null, 2);",
+              "}"
+            ]
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"autor_id\": \"{{user_id}}\",\n  \"autor_nombre\": \"{{user_nombre}}\",\n  \"tipo\": \"discusion\",\n  \"categoria\": \"tecnica\",\n  \"titulo\": \"¿Cómo mejorar el revés?\",\n  \"contenido\": \"Llevo tiempo practicando pero soy muy malo. ¿Qué hago?\"\n}"
+        },
+        "url": {
+          "raw": "{{base_url}}/api/posts",
+          "host": ["{{base_url}}"],
+          "path": ["api", "posts"]
+        }
+      }
+    },
+    {
+      "name": "4. POSTS - Get Post",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{base_url}}/api/posts/{{post_id}}",
+          "host": ["{{base_url}}"],
+          "path": ["api", "posts", "{{post_id}}"]
+        }
+      }
+    },
+    {
+      "name": "5. POSTS - Update Post",
+      "request": {
+        "method": "PUT",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"usuario_id\": \"{{user_id}}\",\n  \"titulo\": \"Ya he mejorado mi revés\",\n  \"categoria\": \"partidos\",\n  \"contenido\": \"Ya he mejorado mucho. Mañana voy al tenis de 8 a 10 ¿Quién se viene?\"\n}"
+        },
+        "url": {
+          "raw": "{{base_url}}/api/posts/{{post_id}}",
+          "host": ["{{base_url}}"],
+          "path": ["api", "posts", "{{post_id}}"]
+        }
+      }
+    },
+    {
+      "name": "6. POSTS - Like Post",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"usuario_id\": \"{{user_id}}\"\n}"
+        },
+        "url": {
+          "raw": "{{base_url}}/api/posts/{{post_id}}/like",
+          "host": ["{{base_url}}"],
+          "path": ["api", "posts", "{{post_id}}", "like"]
+        }
+      }
+    },
+    {
+      "name": "7. COMMENTS - Create Comment",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "if (pm.response.code === 201) {",
+              "    const response = pm.response.json();",
+              "    pm.environment.set('comment_id', response._id || response.id);",
+              "    console.log('✅ Comment ID guardado:', pm.environment.get('comment_id'));",
+              "}"
+            ]
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"entidad_tipo\": \"post\",\n  \"entidad_id\": \"{{post_id}}\",\n  \"usuario_id\": \"{{user_id}}\",\n  \"usuario_nombre\": \"{{user_nombre}}\",\n  \"texto\": \"As no one answers, I myself, will play the tennis match with myself\"\n}"
+        },
+        "url": {
+          "raw": "{{base_url}}/api/comentarios",
+          "host": ["{{base_url}}"],
+          "path": ["api", "comentarios"]
+        }
+      }
+    },
+    {
+      "name": "8. COMMENTS - Get Comment",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{base_url}}/api/comentarios/{{comment_id}}",
+          "host": ["{{base_url}}"],
+          "path": ["api", "comentarios", "{{comment_id}}"]
+        }
+      }
+    },
+    {
+      "name": "9. COMMENTS - List Comments by Entity",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{base_url}}/api/comentarios?entidad_tipo=post&entidad_id={{post_id}}&page=1&limit=20&sort=date&order=desc",
+          "host": ["{{base_url}}"],
+          "path": ["api", "comentarios"],
+          "query": [
+            {
+              "key": "entidad_tipo",
+              "value": "post"
+            },
+            {
+              "key": "entidad_id",
+              "value": "{{post_id}}"
+            },
+            {
+              "key": "page",
+              "value": "1"
+            },
+            {
+              "key": "limit",
+              "value": "20"
+            },
+            {
+              "key": "sort",
+              "value": "date"
+            },
+            {
+              "key": "order",
+              "value": "desc"
+            }
+          ]
+        }
+      }
+    }
+  ],
   "variable": [
     {
       "key": "base_url",
-      "value": "http://localhost:5000/api"
-    },
-    {
-      "key": "admin_id",
-      "value": ""
-    },
-    {
-      "key": "user_id",
-      "value": ""
-    },
-    {
-      "key": "producto_id",
-      "value": ""
-    },
-    {
-      "key": "post_id",
-      "value": ""
-    }
-  ],
-  "item": [
-    {
-      "name": "1️⃣ Setup - Login",
-      "item": [
-        {
-          "name": "Login Admin",
-          "event": [
-            {
-              "listen": "test",
-              "script": {
-                "exec": [
-                  "if (pm.response.code === 200) {",
-                  "    var json = pm.response.json();",
-                  "    pm.environment.set('admin_id', json.user.id);",
-                  "    console.log('Admin ID guardado: ' + json.user.id);",
-                  "}"
-                ]
-              }
-            }
-          ],
-          "request": {
-            "method": "POST",
-            "header": [
-              {
-                "key": "Content-Type",
-                "value": "application/json"
-              }
-            ],
-            "body": {
-              "mode": "raw",
-              "raw": "{\n  \"email\": \"admin@tiendatenis.com\",\n  \"password\": \"admin123\"\n}"
-            },
-            "url": {
-              "raw": "{{base_url}}/auth/login",
-              "host": ["{{base_url}}"],
-              "path": ["auth", "login"]
-            }
-          }
-        },
-        {
-          "name": "Login User Normal",
-          "event": [
-            {
-              "listen": "test",
-              "script": {
-                "exec": [
-                  "if (pm.response.code === 200) {",
-                  "    var json = pm.response.json();",
-                  "    pm.environment.set('user_id', json.user.id);",
-                  "    console.log('User ID guardado: ' + json.user.id);",
-                  "}"
-                ]
-              }
-            }
-          ],
-          "request": {
-            "method": "POST",
-            "header": [
-              {
-                "key": "Content-Type",
-                "value": "application/json"
-              }
-            ],
-            "body": {
-              "mode": "raw",
-              "raw": "{\n  \"email\": \"maria@email.com\",\n  \"password\": \"user123\"\n}"
-            },
-            "url": {
-              "raw": "{{base_url}}/auth/login",
-              "host": ["{{base_url}}"],
-              "path": ["auth", "login"]
-            }
-          }
-        }
-      ]
-    },
-    {
-      "name": "2️⃣ Productos - Queries MongoDB",
-      "item": [
-        {
-          "name": "Listar productos (Paginación)",
-          "request": {
-            "method": "GET",
-            "header": [],
-            "url": {
-              "raw": "{{base_url}}/productos?page=1&limit=10",
-              "host": ["{{base_url}}"],
-              "path": ["productos"],
-              "query": [
-                {
-                  "key": "page",
-                  "value": "1"
-                },
-                {
-                  "key": "limit",
-                  "value": "10"
-                }
-              ]
-            }
-          }
-        },
-        {
-          "name": "Filtrar por categoría",
-          "request": {
-            "method": "GET",
-            "header": [],
-            "url": {
-              "raw": "{{base_url}}/productos?categoria=raquetas&limit=20",
-              "host": ["{{base_url}}"],
-              "path": ["productos"],
-              "query": [
-                {
-                  "key": "categoria",
-                  "value": "raquetas"
-                },
-                {
-                  "key": "limit",
-                  "value": "20"
-                }
-              ]
-            }
-          }
-        },
-        {
-          "name": "Aggregation - Productos por categoría",
-          "request": {
-            "method": "GET",
-            "header": [],
-            "url": {
-              "raw": "{{base_url}}/productos/categorias",
-              "host": ["{{base_url}}"],
-              "path": ["productos", "categorias"]
-            }
-          }
-        },
-        {
-          "name": "Aggregation - Productos por marca",
-          "request": {
-            "method": "GET",
-            "header": [],
-            "url": {
-              "raw": "{{base_url}}/productos/marcas",
-              "host": ["{{base_url}}"],
-              "path": ["productos", "marcas"]
-            }
-          }
-        },
-        {
-          "name": "Ver producto con comentarios",
-          "event": [
-            {
-              "listen": "test",
-              "script": {
-                "exec": [
-                  "if (pm.response.code === 200) {",
-                  "    var json = pm.response.json();",
-                  "    pm.environment.set('producto_id', json.id);",
-                  "}"
-                ]
-              }
-            }
-          ],
-          "request": {
-            "method": "GET",
-            "header": [],
-            "url": {
-              "raw": "{{base_url}}/productos/{{producto_id}}",
-              "host": ["{{base_url}}"],
-              "path": ["productos", "{{producto_id}}"]
-            }
-          }
-        }
-      ]
-    },
-    {
-      "name": "3️⃣ Posts & Comentarios - Cache",
-      "item": [
-        {
-          "name": "Crear post",
-          "event": [
-            {
-              "listen": "test",
-              "script": {
-                "exec": [
-                  "if (pm.response.code === 201) {",
-                  "    var json = pm.response.json();",
-                  "    pm.environment.set('post_id', json.post.id);",
-                  "}"
-                ]
-              }
-            }
-          ],
-          "request": {
-            "method": "POST",
-            "header": [
-              {
-                "key": "Content-Type",
-                "value": "application/json"
-              }
-            ],
-            "body": {
-              "mode": "raw",
-              "raw": "{\n  \"autor_id\": \"{{user_id}}\",\n  \"autor_nombre\": \"María López\",\n  \"tipo\": \"discusion\",\n  \"categoria\": \"tecnica\",\n  \"titulo\": \"¿Cómo mejorar el revés?\",\n  \"contenido\": \"Llevo 3 meses jugando y mi revés sigue siendo débil. ¿Algún consejo?\"\n}"
-            },
-            "url": {
-              "raw": "{{base_url}}/posts",
-              "host": ["{{base_url}}"],
-              "path": ["posts"]
-            }
-          }
-        },
-        {
-          "name": "Ver post con cache de comentarios",
-          "request": {
-            "method": "GET",
-            "header": [],
-            "url": {
-              "raw": "{{base_url}}/posts/{{post_id}}",
-              "host": ["{{base_url}}"],
-              "path": ["posts", "{{post_id}}"]
-            }
-          }
-        },
-        {
-          "name": "Crear comentario en post",
-          "request": {
-            "method": "POST",
-            "header": [
-              {
-                "key": "Content-Type",
-                "value": "application/json"
-              }
-            ],
-            "body": {
-              "mode": "raw",
-              "raw": "{\n  \"entidad_tipo\": \"post\",\n  \"entidad_id\": \"{{post_id}}\",\n  \"usuario_id\": \"{{user_id}}\",\n  \"usuario_nombre\": \"Juan García\",\n  \"texto\": \"Te recomiendo practicar con la pared. A mí me ayudó mucho para mejorar la técnica.\"\n}"
-            },
-            "url": {
-              "raw": "{{base_url}}/comentarios",
-              "host": ["{{base_url}}"],
-              "path": ["comentarios"]
-            }
-          }
-        },
-        {
-          "name": "Aggregation - Posts por categoría",
-          "request": {
-            "method": "GET",
-            "header": [],
-            "url": {
-              "raw": "{{base_url}}/posts/categorias",
-              "host": ["{{base_url}}"],
-              "path": ["posts", "categorias"]
-            }
-          }
-        }
-      ]
-    },
-    {
-      "name": "4️⃣ Pedidos - Transacciones ACID ⭐",
-      "item": [
-        {
-          "name": "Ver stock ANTES (producto específico)",
-          "request": {
-            "method": "GET",
-            "header": [],
-            "url": {
-              "raw": "{{base_url}}/productos/{{producto_id}}",
-              "host": ["{{base_url}}"],
-              "path": ["productos", "{{producto_id}}"]
-            }
-          }
-        },
-        {
-          "name": "Crear pedido (Transacción ACID)",
-          "request": {
-            "method": "POST",
-            "header": [
-              {
-                "key": "Content-Type",
-                "value": "application/json"
-              }
-            ],
-            "body": {
-              "mode": "raw",
-              "raw": "{\n  \"user_id\": \"{{user_id}}\",\n  \"items\": [\n    {\n      \"id_producto\": \"{{producto_id}}\",\n      \"nombre\": \"Raqueta Wilson Pro\",\n      \"precio\": 129.99,\n      \"cantidad\": 2\n    }\n  ],\n  \"total\": 259.98,\n  \"direccion_envio\": {\n    \"calle\": \"Calle Mayor 123\",\n    \"ciudad\": \"Madrid\",\n    \"codigo_postal\": \"28001\",\n    \"telefono\": \"612345678\"\n  },\n  \"metodo_pago\": \"tarjeta\"\n}"
-            },
-            "url": {
-              "raw": "{{base_url}}/pedidos",
-              "host": ["{{base_url}}"],
-              "path": ["pedidos"]
-            }
-          }
-        },
-        {
-          "name": "Ver stock DESPUÉS (stock reducido)",
-          "request": {
-            "method": "GET",
-            "header": [],
-            "url": {
-              "raw": "{{base_url}}/productos/{{producto_id}}",
-              "host": ["{{base_url}}"],
-              "path": ["productos", "{{producto_id}}"]
-            }
-          }
-        },
-        {
-          "name": "Ver mis pedidos",
-          "request": {
-            "method": "GET",
-            "header": [
-              {
-                "key": "Content-Type",
-                "value": "application/json"
-              }
-            ],
-            "body": {
-              "mode": "raw",
-              "raw": "{\n  \"usuario_id_peticion\": \"{{user_id}}\",\n  \"clase\": \"user\"\n}"
-            },
-            "url": {
-              "raw": "{{base_url}}/pedidos/usuario/{{user_id}}?page=1&limit=10",
-              "host": ["{{base_url}}"],
-              "path": ["pedidos", "usuario", "{{user_id}}"],
-              "query": [
-                {
-                  "key": "page",
-                  "value": "1"
-                },
-                {
-                  "key": "limit",
-                  "value": "10"
-                }
-              ]
-            }
-          }
-        }
-      ]
-    },
-    {
-      "name": "5️⃣ Permisos - Seguridad",
-      "item": [
-        {
-          "name": "❌ User intenta crear producto (Falla)",
-          "request": {
-            "method": "POST",
-            "header": [
-              {
-                "key": "Content-Type",
-                "value": "application/json"
-              }
-            ],
-            "body": {
-              "mode": "raw",
-              "raw": "{\n  \"nombre\": \"Raqueta HEAD Speed\",\n  \"descripcion\": \"Raqueta profesional\",\n  \"precio\": 149.99,\n  \"marca\": \"HEAD\",\n  \"categoria\": \"raquetas\",\n  \"genero\": \"unisex\",\n  \"stock\": 10,\n  \"activo\": true,\n  \"usuario_id\": \"{{user_id}}\",\n  \"clase\": \"user\"\n}"
-            },
-            "url": {
-              "raw": "{{base_url}}/productos",
-              "host": ["{{base_url}}"],
-              "path": ["productos"]
-            }
-          }
-        },
-        {
-          "name": "✅ Admin crea producto (Éxito)",
-          "request": {
-            "method": "POST",
-            "header": [
-              {
-                "key": "Content-Type",
-                "value": "application/json"
-              }
-            ],
-            "body": {
-              "mode": "raw",
-              "raw": "{\n  \"nombre\": \"Raqueta HEAD Speed\",\n  \"descripcion\": \"Raqueta profesional de carbono\",\n  \"precio\": 149.99,\n  \"marca\": \"HEAD\",\n  \"categoria\": \"raquetas\",\n  \"genero\": \"unisex\",\n  \"stock\": 10,\n  \"activo\": true,\n  \"usuario_id\": \"{{admin_id}}\",\n  \"clase\": \"admin\"\n}"
-            },
-            "url": {
-              "raw": "{{base_url}}/productos",
-              "host": ["{{base_url}}"],
-              "path": ["productos"]
-            }
-          }
-        },
-        {
-          "name": "❌ User intenta eliminar post ajeno (Falla)",
-          "request": {
-            "method": "DELETE",
-            "header": [
-              {
-                "key": "Content-Type",
-                "value": "application/json"
-              }
-            ],
-            "body": {
-              "mode": "raw",
-              "raw": "{\n  \"usuario_id\": \"{{user_id}}\",\n  \"clase\": \"user\"\n}"
-            },
-            "url": {
-              "raw": "{{base_url}}/posts/{{post_id}}",
-              "host": ["{{base_url}}"],
-              "path": ["posts", "{{post_id}}"]
-            }
-          }
-        },
-        {
-          "name": "✅ Admin elimina cualquier post (Éxito)",
-          "request": {
-            "method": "DELETE",
-            "header": [
-              {
-                "key": "Content-Type",
-                "value": "application/json"
-              }
-            ],
-            "body": {
-              "mode": "raw",
-              "raw": "{\n  \"usuario_id\": \"{{admin_id}}\",\n  \"clase\": \"admin\"\n}"
-            },
-            "url": {
-              "raw": "{{base_url}}/posts/{{post_id}}",
-              "host": ["{{base_url}}"],
-              "path": ["posts", "{{post_id}}"]
-            }
-          }
-        }
-      ]
-    },
-    {
-      "name": "6️⃣ Extras - Carrito",
-      "item": [
-        {
-          "name": "Ver carrito",
-          "request": {
-            "method": "GET",
-            "header": [],
-            "url": {
-              "raw": "{{base_url}}/usuarios/{{user_id}}/carrito",
-              "host": ["{{base_url}}"],
-              "path": ["usuarios", "{{user_id}}", "carrito"]
-            }
-          }
-        },
-        {
-          "name": "Agregar producto al carrito",
-          "request": {
-            "method": "POST",
-            "header": [
-              {
-                "key": "Content-Type",
-                "value": "application/json"
-              }
-            ],
-            "body": {
-              "mode": "raw",
-              "raw": "{\n  \"id_producto\": \"{{producto_id}}\",\n  \"nombre\": \"Raqueta Wilson Pro\",\n  \"precio\": 129.99,\n  \"cantidad\": 1\n}"
-            },
-            "url": {
-              "raw": "{{base_url}}/usuarios/{{user_id}}/carrito",
-              "host": ["{{base_url}}"],
-              "path": ["usuarios", "{{user_id}}", "carrito"]
-            }
-          }
-        }
-      ]
+      "value": "http://localhost:5000",
+      "type": "string"
     }
   ]
 }
