@@ -245,7 +245,7 @@ def crear_comentarios(db, usuarios, productos, posts, num):
                 {"_id": post["_id"]},
                 {"$set": {
                     "total_comentarios": count,
-                    "comentarios_recientes": cache  # Cache de comentarios recientes
+                    "comentarios": cache  # Cache de comentarios recientes
                 }}
             )
     
@@ -257,7 +257,7 @@ def crear_comentarios(db, usuarios, productos, posts, num):
 def main():
     users,posts,coments=50_000,2_000,100_000
     print(f"\n{'='*60}")
-    print(f"🌱 SEED DATABASE")
+    print(f"SEED DATABASE")
     print(f"{'='*60}")
     print(f"MongoDB: {MONGO_URI}")
     print(f"BD: {DB_NAME}")
@@ -299,10 +299,10 @@ def main():
     print(f"\n{'='*60}")
     print(f"✓ COMPLETADO EN {duration:.1f}s")
     print(f"{'='*60}")
-    print(f"👤 Usuarios: {len(usuarios)}")
-    print(f"📦 Productos: {len(productos)}")
-    print(f"📝 Posts: {len(posts_creados)}")
-    print(f"💬 Comentarios: {coments}")
+    print(f"Usuarios: {len(usuarios)}")
+    print(f"Productos: {len(productos)}")
+    print(f"Posts: {len(posts_creados)}")
+    print(f"Comentarios: {coments}")
 
 if __name__ == "__main__":
     main()
