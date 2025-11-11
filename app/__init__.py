@@ -11,8 +11,8 @@ from app.routes.pedidos import bp as bp_ped
 
 
 def create_app():
-    app,mongo_client = Flask(__name__) #__name__ dentro de __init__.py toma el nombre de la carpeta que lo contiene (app).
-    db=init_db()#creamos la instancia de mongoDB
+    app= Flask(__name__) #__name__ dentro de __init__.py toma el nombre de la carpeta que lo contiene (app).
+    db,mongo_client=init_db()#creamos la instancia de mongoDB
     
     #conexiones
     app.register_blueprint(bp_auth)
