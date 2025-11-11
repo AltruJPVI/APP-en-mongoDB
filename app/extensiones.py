@@ -22,4 +22,4 @@ def init_db():
         print(f"❌ Error conectando a MongoDB: {e}")
         raise
     
-    return db
+    return db,mongo_client
