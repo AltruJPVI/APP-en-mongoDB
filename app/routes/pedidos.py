@@ -153,7 +153,6 @@ def crear_pedido():
                 
         except Exception as e:
             # Si algo falla → ROLLBACK automático
-            session.abort_transaction()
             raise e
         finally:
             session.end_session()
