@@ -549,15 +549,9 @@ def _actualizar_comentarios_recientes(entidad_tipo: str, entidad_id: str):
         # Actualizar en la entidad
         entidad_collection = _get_collection_by_tipo(entidad_tipo)
         
-        # Diferentes campos según la entidad
-        if entidad_tipo == 'producto':
-            campo_actualizar = "comentarios"
-        else:
-            campo_actualizar = "comentarios_recientes"
-        
         entidad_collection.update_one(
             {"_id": ObjectId(entidad_id)},
-            {"$set": {campo_actualizar: comentarios_recientes}}
+            {"$set": {"comentarios": comentarios_recientes}}
         )
         
     except Exception as e:
