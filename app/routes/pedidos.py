@@ -182,10 +182,6 @@ def crear_pedido():
 def listar_pedidos_usuario(user_id):
     """
     GET /api/pedidos/usuario/:user_id?page=1&limit=20
-    Body: {
-        "usuario_id_peticion": "507f...",  // ID del usuario que hace la petición
-        "clase": "user"  // user, empresa, admin
-    }
     
     DEMO: Solo el propio usuario o admin pueden ver sus pedidos
     """
@@ -195,7 +191,7 @@ def listar_pedidos_usuario(user_id):
             return jsonify({"error": "ID de usuario inválido"}), 400
         
         # ✅ VERIFICACIÓN DE PERMISOS (desde body)
-        data = request.json or {}
+        '''data = request.json or {}
         usuario_id_peticion = data.get('usuario_id_peticion')
         clase = data.get('clase', 'user')
         
@@ -207,7 +203,7 @@ def listar_pedidos_usuario(user_id):
         es_admin = clase == 'admin'
         
         if not (es_propio_usuario or es_admin):
-            return jsonify({"error": "Solo puedes ver tus propios pedidos"}), 403
+            return jsonify({"error": "Solo puedes ver tus propios pedidos"}), 403'''
         
         # Paginación (sigue en query params)
         page = request.args.get('page', 1, type=int)
@@ -249,13 +245,8 @@ def listar_pedidos_usuario(user_id):
 def ver_pedido(order_id):
     """
     GET /api/pedidos/:order_id
-    Body: {
-        "usuario_id": "507f...",  // ID del usuario que hace la petición
-        "clase": "user"  // user, empresa, admin
-    }
-    
-    DEMO: Solo el dueño del pedido o admin pueden verlo
-    """
+
+        """
     try:
         # Validar ObjectId
         if not ObjectId.is_valid(order_id):
@@ -267,20 +258,6 @@ def ver_pedido(order_id):
         if not pedido:
             return jsonify({"error": "Pedido no encontrado"}), 404
         
-        # ✅ VERIFICACIÓN DE PERMISOS (desde body)
-        data = request.json or {}
-        usuario_id_peticion = data.get('usuario_id')
-        clase = data.get('clase', 'user')
-        
-        if not usuario_id_peticion:
-            return jsonify({"error": "usuario_id es requerido"}), 400
-        
-        # Verificar: es el dueño del pedido O es admin
-        es_dueño = pedido['user_id'] == usuario_id_peticion
-        es_admin = clase == 'admin'
-        
-        if not (es_dueño or es_admin):
-            return jsonify({"error": "No tienes permisos para ver este pedido"}), 403
         
         # Convertir _id a string
         pedido['_id'] = str(pedido['_id'])
@@ -299,9 +276,6 @@ def ver_pedido(order_id):
 def listar_todos_pedidos():
     """
     GET /api/pedidos?page=1&limit=20&fecha_desde=2025-01-01&metodo_pago=tarjeta
-    Body: {
-        "clase": "admin"  // Debe ser admin
-    }
     
     Listar todos los pedidos (solo admin)
     
