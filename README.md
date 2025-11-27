@@ -24,16 +24,16 @@ REST API for an online tennis store with social features (posts, comments, event
 ```python
 # Products with or without sizes - same model
 {
-  "nombre": "Racket",
+  "name": "Racket",
   "stock": 10  # Simple stock
 }
 
 {
-  "nombre": "Shoes",
-  "tallas": ["39", "40", "41"],
+  "name": "Shoes",
+  "sizes": ["39", "40", "41"],
   "stocks": [
-    {"talla": "39", "stock": 5},
-    {"talla": "40", "stock": 8}
+    {"size": "39", "stock": 5},
+    {"size": "40", "stock": 8}
   ]
 }
 ```
@@ -42,11 +42,11 @@ REST API for an online tennis store with social features (posts, comments, event
 ```python
 # Cache of recent comments (avoids joins)
 {
-  "nombre": "Wilson Racket",
-  "comentarios": [  # Last 5 comments
-    {"usuario": "Juan", "texto": "Excellent", "valoracion": 5}
+  "name": "Wilson Racket",
+  "comments": [  # Last 5 comments
+    {"users": "Juan", "text": "Excellent", "grade": 5}
   ],
-  "total_comentarios": 127
+  "total_comments": 127
 }
 ```
 
@@ -54,11 +54,11 @@ REST API for an online tennis store with social features (posts, comments, event
 ```python
 # Order with all historical info
 {
-  "numero_pedido": "ORD-2025-000123",
+  "order_number": "ORD-2025-000123",
   "items": [
-    {"nombre": "Wilson Racket", "precio": 129.99, "cantidad": 2}
+    {"name": "Wilson Racket", "price": 129.99, "amount": 2}
   ],
-  "direccion_envio": {...}
+  "order_direction": {...}
 }
 ```
 
@@ -66,7 +66,7 @@ REST API for an online tennis store with social features (posts, comments, event
 ```python
 # Statistics in one query
 db.products.aggregate([
-  {"$group": {"_id": "$categoria", "total": {"$sum": 1}}},
+  {"$group": {"_id": "$category", "total": {"$sum": 1}}},
   {"$sort": {"total": -1}}
 ])
 ```
@@ -179,59 +179,59 @@ aditionally you can install mongoDB for VS Code if you want to try to query inst
 ## Main Endpoints
 
 ```
---USUARIOS--
+--USERS--
 
-POST - registrar usuario
-POST - logearse 
+POST - create user
+POST - login 
 
-GET - ver perfil 
-PUT - actualizar perfil
+GET - vee profile 
+PUT - update profile
 
-GET - ver carrito
-DELETE - eliminar un producto del carrito
-POST - añadir al carrito
-DELETE - vaciar carrito
+GET - see cart
+DELETE - delete a product from cart
+POST - add to cart
+DELETE - clean cart
 
---COMENTARIOS--
+--COMMENTS--
 
-POST - crear comentario 
-GET - ver comentarios con caché de 5 coments
-GET - ver 1 comentario concreto
-PUT - actualizar comentario
-DELETE - borrar comentario
+POST - create comments
+GET - see comemnts with a cachee of 5 comments
+GET - see 1 concrete comment 
+PUT - update  comment
+DELETE - delete comment
 
-POST - dar like
-GET - ver respuestas a un comentario
+POST - give like
+GET - see comment responses
 
 
---PEDIDOS--
+--Orders--
 
-POST - crear pedido
-GET - ver pedidos de un usuario
-GET - ver 1 pedido concreto
-GET - ver todos los pedidos
+POST - create order
+GET - see a user's order
+GET - see 1 concrete order 
+GET - see all orders
 
 --POSTS--
 
-POST - crear post 
-GET - ver posts
-GET - ver 1 post concreto
-PUT - actualizar post
-DELETE - borrar post
+POST - create post 
+GET - see posts
+GET - see 1 concrete post 
+PUT - update post
+DELETE - delete post
 
-POST - dar like post
-GET - ver cuantos post hay de cada categoria
+POST - give a like to a post
+GET - see hoe many posts in each category
 
---PRODUCTOS--
+--PRODUCTS--
 
-POST - crear producto
-GET - ver productos
-GET - ver 1 producto concreto
-PUT - actualizar producto
-DELETE - borrar producto
+POST - create products
+GET - see products
+GET - see 1 concrete product
+PUT - update product
+DELETE - delete product
 
-Get - ver cuantos productos hay de cada marca
-GET - ver cuantos productos hay de cada categoria
+Get - see how many products in each brand
+GET - see how many products in each category
 
 ```
 
