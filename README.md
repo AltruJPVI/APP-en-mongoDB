@@ -97,7 +97,7 @@ with session.start_transaction():
     # 3. Empty cart
     db.users.update_one(
         {"_id": user_id},
-        {"$set": {"carrito": []}}
+        {"$set": {"cart": []}}
     )
     
     # If ANY operation fails → automatic ROLLBACK
