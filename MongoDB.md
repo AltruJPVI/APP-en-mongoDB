@@ -86,67 +86,67 @@ MongoDB offers sophisticated features essential for modern application developme
 ## How to query in MongoDB
 
 ```
-// view data bases
+// view databases
 show dbs
 
-// Usar una data base
+// Use a database
 use tienda_tenis
 
 // view collections
 show collections
 
 
-===============================================
+==============
 VIEW DOCUMENTS
-===============================================
+==============
 
-// Ver todos los documentos
-db.productos.find()
-db.productos.find().pretty()
+// see all documents
+db.products.find()
+db.products.find().pretty()
 
-// Ver un solo documento
-db.productos.findOne()
-db.productos.findOne({ marca: "Wilson" })
+// view a concrete document
+db.products.findOne()
+db.products.findOne({ brand: "Wilson" })
 
-// Contar documentos
-db.productos.countDocuments()
-db.productos.countDocuments({ marca: "Wilson" })
+// count documentos
+db.products.countDocuments()
+db.products.countDocuments({ brand: "Wilson" })
 
 
-===============================================
+============
 BASIC FILTERS
-===============================================
+============
 
 // extact field
-db.productos.find({ marca: "Wilson" })
-db.productos.find({ precio: 199.99 })
-db.usuarios.findOne({ email: "ana@gmail.com" })
+db.products.find({ brand: "Wilson" })
+db.products.find({ price: 199.99 })
+db.users.findOne({ email: "ana@gmail.com" })
 
 // Sort by price
-db.productos.find({ precio: { $gt: 100 } })    // mayor que
-db.productos.find({ precio: { $lt: 100 } })    // menor que
-db.productos.find({ precio: { $gte: 100 } })   // mayor o igual
-db.productos.find({ precio: { $lte: 100 } })   // menor o igual
+db.products.find({ price: { $gt: 100 } })    // greater than
+db.products.find({ price: { $lt: 100 } })    // lower than
+db.products.find({ price: { $gte: 100 } })   // greater or equal
+db.products.find({ price: { $lte: 100 } })   // lower or equal
 
 // search for many
-db.productos.find({ marca: { $in: ["Wilson", "Head", "Babolat"] } })
+db.products.find({ brand: { $in: ["Wilson", "Head", "Babolat"] } })
 
 //AND
-db.productos.find({ 
-  marca: "Wilson",
-  precio: { $lt: 200 }
+db.products.find({ 
+  brand: "Wilson",
+  price: { $lt: 200 }
 })
 
 // OR
-db.productos.find({
+db.products.find({
   $or: [
-    { marca: "Wilson" },
-    { precio: { $lt: 100 } }
+    { brand: "Wilson" },
+    { price: { $lt: 100 } }
   ]
 })
 
 // embbebed fields
-db.products.find({ "especificaciones.peso": "300g" })
+db.products.find({ "specs.weight": "300g" })
 
 
 
@@ -207,4 +207,5 @@ db.products.find().sort({ _id: -1 }).limit(1)
 //find with unique fields
 db.comments.find({"valoracion": { $exists: true }})
 ```
+
 ---
