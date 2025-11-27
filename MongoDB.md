@@ -151,24 +151,24 @@ db.products.find({ "specs.weight": "300g" })
 
 
 
-===============================================
+===================
 SHOW CERTAIND FIELDS
-===============================================
+===================
 
 //only these fields
-db.products.find({},{ nombre: 1, precio: 1})
+db.products.find({},{ name: 1, price: 1})
 
 //search for someone which name has Gonzalo in it
-db.users.find({nombre:/Gonzalo/i}, {nombre:1,nivel:1,email:1})
+db.users.find({name:/Gonzalo/i}, {name:1,level:1,email:1})
 
 
-===============================================
+=================
 ORDENAR Y LIMITAR
-===============================================
+=================
 
 // ascendent or descendent order (1) or (-1)
-db.products.find().sort({ precio: 1 })
-db.products.find().sort({ precio: -1 })
+db.products.find().sort({ price: 1 })
+db.products.find().sort({ price: -1 })
 
 // Limit
 db.productS.find().limit(5)
@@ -177,35 +177,36 @@ db.productS.find().limit(5)
 db.products.find().skip(10).limit(5)
 
 // combine
-db.products.find({ marca: "Wilson" }).sort({ precio: -1 }).limit(3)
+db.products.find({ brand: "Wilson" }).sort({ price: -1 }).limit(3)
 
 
-===============================================
+========
 AGREGATE
-===============================================
+========
 
-// Contar por categoría
+// count by category
 db.products.aggregate([
-  { $group: { _id: "$categoria", total: { $sum: 1 } } }
+  { $group: { _id: "$category", total: { $sum: 1 } } }
 ])
 
-// Precio promedio por marca
+// average pice per brand
 db.products.aggregate([
-  { $group: { _id: "$marca", precio_promedio: { $avg: "$precio" } } }
+  { $group: { _id: "$brand", average_price: { $avg: "$price" } } }
 ])
 
-===============================================
+=======
 OTHERS
-===============================================
+=======
 
 // Regex (find for text appearance) case sensitive
-db.products.find({ nombre: /wilson/i})
+db.products.find({ name: /wilson/i})
 
 // last inserted
 db.products.find().sort({ _id: -1 }).limit(1)
 
 //find with unique fields
-db.comments.find({"valoracion": { $exists: true }})
+db.comments.find({"rating": { $exists: true }})
 ```
 
 ---
+
