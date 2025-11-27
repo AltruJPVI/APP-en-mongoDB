@@ -129,7 +129,7 @@ Set of MongoDB servers that maintain the same data:
 
 ---
 
-## 📊 MongoDB Features Implemented
+## MongoDB Features Implemented
 
 | Feature | 
 |---------|
