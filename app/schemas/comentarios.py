@@ -5,7 +5,7 @@ from enum import Enum
 
 
 #caché de los últimos comentarios
-class ComentarioReciente(BaseModel):
+class LastComment(BaseModel):
     id: str = Field(..., alias="_id")
     user_id: str
     user_name: str
@@ -13,57 +13,56 @@ class ComentarioReciente(BaseModel):
     date: datetime
     likes: int = 0
     additional_file:Optional[List[str]] = None
-    valoracion: Optional[int] = Field(None, ge=1, le=5) #stars
+    rating: Optional[int] = Field(None, ge=1, le=5) #stars
 
     class Config:
         populate_by_name = True
 
         
-class TipoEntidad(str, Enum):
-    producto = "producto"
+class EntityType(str, Enum):
+    product = "product"
     post = "post"
 
 class CommentCreate(BaseModel):
 
-    entidad_tipo: TipoEntidad 
-    entidad_id: str  
-    usuario_id: str
-    usuario_nombre: str  
-    texto: str = Field(..., min_length=1, max_length=1000)
-    archivo_adicional:Optional[List[str]] = None
-    respuesta_a: Optional[str] = None  # ID del comentario padre, null si es principal
-    valoracion: Optional[int] = Field(None, ge=1, le=5) 
+    entity_type: EntityType 
+    entity_id: str  
+    user_id: str
+    user_name: str  
+    text: str = Field(..., min_length=1, max_length=1000)
+    additional_file:Optional[List[str]] = None
+    response_to: Optional[str] = None  
+    rating: Optional[int] = Field(None, ge=1, le=5) 
     
 
-    @field_validator('texto')
-    def limpiar_texto(cls, v):
+    @field_validator('text')
+    def clean_text(cls, v):
         return v.strip()
 
-# Schema de RESPUESTA del comentario
 class CommentResponse(BaseModel):
     id: str = Field(..., alias="_id")
-    entidad_tipo: TipoEntidad
-    entidad_id: str
-    usuario_id: str
-    usuario_nombre: str
-    texto: str
-    archivo_adicional:Optional[List[str]] = None
-    fecha: datetime
+    entity_type: EntityType
+    entity_id: str
+    usuer_id: str
+    user_name: str
+    text: str
+    additional_file:Optional[List[str]] = None
+    date: datetime
     likes: int = 0
-    respuesta_a: Optional[str] = None
-    valoracion: Optional[int] = Field(None, ge=1, le=5) 
+    response_to: Optional[str] = None
+    rating: Optional[int] = Field(None, ge=1, le=5) 
     
     class Config:
         populate_by_name = True
 
 # Schema para ACTUALIZAR comentario
 class CommentUpdate(BaseModel):
-    texto: Optional[str] = Field(None, min_length=1, max_length=1000)
-    archivo_adicional:Optional[List[str]] = None
-    valoracion: Optional[int] = Field(None, ge=1, le=5) 
+    text: Optional[str] = Field(None, min_length=1, max_length=1000)
+    additional_file:Optional[List[str]] = None
+    rating: Optional[int] = Field(None, ge=1, le=5) 
     
-    @field_validator('texto')
-    def limpiar_texto(cls, v):
+    @field_validator('text')
+    def clean_text(cls, v):
         if v:
             return v.strip()
         return v
