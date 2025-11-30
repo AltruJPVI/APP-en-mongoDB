@@ -1,123 +1,124 @@
 from pydantic import BaseModel, Field, field_validator
 from typing import Optional, List, Dict, Any
 from enum import Enum
-from .comentarios import ComentarioReciente
+from .comments import LastComment
 
-# Enum para categorías
-class CategoriaProducto(str, Enum):
-    raquetas = "raquetas"
-    zapatillas = "zapatillas"
-    camisetas = "camisetas"
-    pelotas = "pelotas"
-    raqueteros = "raqueteros"
-    gorras = "gorras"
-    munequeras = "munequeras"
+# Enum for categories
+class ProductCategory(str, Enum):
+    rackets = "rackets"
+    shoes = "shoes"
+    shirts = "shirts"
+    balls = "balls"
+    racket_bags = "racket_bags"
+    caps = "caps"
+    wristbands = "wristbands"
 
-# Enum para género
-class Genero(str, Enum):
-    hombre = "hombre"
-    mujer = "mujer"
+# Enum for gender
+class Gender(str, Enum):
+    male = "male"
+    female = "female"
     unisex = "unisex"
 
-# Schema para stock por talla
-class StockPorTalla(BaseModel):
-    talla: str
-    stock: int = Field(..., ge=0)  # Mayor o igual a 0
+# Schema for stock by size
+class StockBySize(BaseModel):
+    size: str
+    stock: int = Field(..., ge=0)  # Greater than or equal to 0
 
-# Schema para CREAR producto
+# Schema to CREATE product
 class ProductCreate(BaseModel):
-    nombre: str = Field(..., min_length=2, max_length=200)
-    precio: float = Field(..., gt=0)  # Mayor que 0
-    marca: str 
-    categoria: CategoriaProducto
-    genero: Genero = Genero.unisex
+    name: str = Field(..., min_length=2, max_length=200)
+    price: float = Field(..., gt=0)  # Greater than 0
+    brand: str 
+    category: ProductCategory
+    gender: Gender = Gender.unisex
     color: Optional[str] = None
-    imagenes: Optional[List[str]] = None
-    activo: bool=True
+    images: Optional[List[str]] = None
+    active: bool = True
     
-    # Stock: puede ser simple O por tallas
-    stock: Optional[int] = Field(None, ge=0)  # Stock simple
-    tallas: Optional[List[str]] = None  # Tallas disponibles (plural)
-    stocks: Optional[List[StockPorTalla]] = None  # Stock por talla
+    # Stock: can be simple OR by sizes
+    stock: Optional[int] = Field(None, ge=0)  # Simple stock
+    sizes: Optional[List[str]] = None  # Available sizes (plural)
+    stocks: Optional[List[StockBySize]] = None  # Stock by size
     
-    # Especificaciones flexibles (cualquier clave-valor)
-    especificaciones: Optional[Dict[str, Any]] = None
-
-    @field_validator('nombre', 'marca')
-    def limpiar_espacios(cls, v):
+    # Flexible specifications (any key-value)
+    specifications: Optional[Dict[str, Any]] = None
+    
+    @field_validator('name', 'brand')
+    def clean_spaces(cls, v):
         return v.strip()
-
+    
     @field_validator('stocks')
-    def validar_stocks(cls, v, info):
-        """Si hay stocks por talla, debe haber tallas definidas"""
+    def validate_stocks(cls, v, info):
+        """If there are stocks by size, sizes must be defined"""
         if v is not None:
-            tallas = info.data.get('tallas')
-            if not tallas:
-                raise ValueError('Si defines stocks por talla, debes proporcionar las tallas')
-            # Verificar que todas las tallas en stocks existan en el array tallas
-            tallas_stock = {item.talla for item in v}
-            tallas_definidas = set(tallas)
-            if not tallas_stock.issubset(tallas_definidas):
-                raise ValueError('Todas las tallas en stocks deben estar en el array de tallas')
+            sizes = info.data.get('sizes')
+            if not sizes:
+                raise ValueError('If you define stocks by size, you must provide the sizes')
+            # Verify that all sizes in stocks exist in the sizes array
+            stock_sizes = {item.size for item in v}
+            defined_sizes = set(sizes)
+            if not stock_sizes.issubset(defined_sizes):
+                raise ValueError('All sizes in stocks must be in the sizes array')
         return v
-
+    
     @field_validator('stock')
-    def validar_stock_simple(cls, v, info):
-        """Si hay stock simple, no debe haber tallas ni stocks"""
+    def validate_simple_stock(cls, v, info):
+        """If there is simple stock, there should not be sizes or stocks"""
         if v is not None:
-            if info.data.get('tallas') or info.data.get('stocks'):
-                raise ValueError('No puedes tener stock simple y stock por tallas al mismo tiempo')
+            if info.data.get('sizes') or info.data.get('stocks'):
+                raise ValueError('You cannot have simple stock and stock by sizes at the same time')
         return v
 
-# Schema de RESPUESTA (lo que devuelves al frontend)
+# RESPONSE Schema (what you return to the frontend)
 class ProductResponse(BaseModel):
     id: str = Field(..., alias="_id")
-    nombre: str
-    precio: float
-    marca: str
-    categoria: CategoriaProducto
-    genero: Genero
+    name: str
+    price: float
+    brand: str
+    category: ProductCategory
+    gender: Gender
     color: Optional[str] = None
-    imagenes: Optional[List[str]] = None
-    activo:bool
+    images: Optional[List[str]] = None
+    active: bool
     
     # Stock
     stock: Optional[int] = None
-    tallas: Optional[List[str]] = None  # Corregido a plural
-    stocks: Optional[List[StockPorTalla]] = None
+    sizes: Optional[List[str]] = None  # Fixed to plural
+    stocks: Optional[List[StockBySize]] = None
     
-    # Especificaciones
-    especificaciones: Optional[Dict[str, Any]] = None
-    comentarios: List[ComentarioReciente]=[]
-    total_comentarios:int=0
+    # Specifications
+    specifications: Optional[Dict[str, Any]] = None
+    comments: List[LastComment] = []
+    total_comments: int = 0
     
-    #metricas
-    valoracion_promedio: Optional[float] = None  
-    total_valoraciones: int = 0  
+    # Metrics
+    average_rating: Optional[float] = None  
+    total_ratings: int = 0  
+    
     class Config:
         populate_by_name = True
 
-# Schema para ACTUALIZAR producto
+# Schema to UPDATE product
 class ProductUpdate(BaseModel):
-    nombre: Optional[str] = Field(None, min_length=2, max_length=200)
-    precio: Optional[float] = Field(None, gt=0)
-    marca: Optional[str] = None
-    categoria: Optional[CategoriaProducto] = None
-    genero: Optional[Genero] = None
+    name: Optional[str] = Field(None, min_length=2, max_length=200)
+    price: Optional[float] = Field(None, gt=0)
+    brand: Optional[str] = None
+    category: Optional[ProductCategory] = None
+    gender: Optional[Gender] = None
     color: Optional[str] = None
-    imagenes: Optional[List[str]] = None
-    activo:Optional[bool]=None
+    images: Optional[List[str]] = None
+    active: Optional[bool] = None
+    
     # Stock
     stock: Optional[int] = Field(None, ge=0)
-    tallas: Optional[List[str]] = None  # Corregido a plural
-    stocks: Optional[List[StockPorTalla]] = None
+    sizes: Optional[List[str]] = None  # Fixed to plural
+    stocks: Optional[List[StockBySize]] = None
     
-    # Especificaciones
-    especificaciones: Optional[Dict[str, Any]] = None
-
-    @field_validator('nombre', 'marca')
-    def limpiar_espacios(cls, v):
+    # Specifications
+    specifications: Optional[Dict[str, Any]] = None
+    
+    @field_validator('name', 'brand')
+    def clean_spaces(cls, v):
         if v:
             return v.strip()
         return v
-    
