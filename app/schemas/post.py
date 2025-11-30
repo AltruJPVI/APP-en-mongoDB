@@ -2,97 +2,89 @@ from pydantic import BaseModel, Field, field_validator
 from typing import Optional, List
 from datetime import datetime
 from enum import Enum
-from .comentarios import ComentarioReciente
+from .comments import LastComment
 
-class TipoPost(str, Enum):
-    discusion = "discusion"  
-    articulo = "articulo" 
+class PostType(str, Enum):
+    discussion = "discussion"  
+    article = "article" 
 
-# Enum para categorías de foros
-class CategoriaPost(str, Enum):
-    equipamiento = "equipamiento"
-    tecnica = "tecnica"
-    entrenamientos = "entrenamientos"
-    partidos = "partidos"
-    clubes = "clubes"
+# Enum for forum categories
+class PostCategory(str, Enum):
+    equipment = "equipment"
+    technique = "technique"
+    training = "training"
+    matches = "matches"
+    clubs = "clubs"
     general = "general"
-    consejos = "consejos"
-    nutricion = "nutricion"
-    noticias = "noticias"
-    torneos = "torneos"
+    tips = "tips"
+    nutrition = "nutrition"
+    news = "news"
+    tournaments = "tournaments"
 
-# Schema para imágenes
-class Imagen(BaseModel):
+# Schema for images
+class Image(BaseModel):
     url: str
     caption: Optional[str] = None
 
-# Schema para videos
+# Schema for videos
 class Video(BaseModel):
     url: str
     caption: Optional[str] = None
 
-# Schema para CREAR discusión
+# Schema to CREATE discussion
 class PostCreate(BaseModel):
-    autor_id: str
-    autor_nombre: str
-
-    tipo: TipoPost = TipoPost.discusion 
-    categoria: CategoriaPost
-    titulo: str = Field(..., max_length=100)
-    contenido: str = Field(..., min_length=10)  # Primer mensaje
-
-    #opcionales
-    resumen: Optional[str] = Field(None, max_length=500)
-    imagenes: Optional[List[Imagen]] = None
+    author_id: str
+    author_name: str
+    type: PostType = PostType.discussion 
+    category: PostCategory
+    title: str = Field(..., max_length=100)
+    content: str = Field(..., min_length=10)  # First message
+    # Optional
+    summary: Optional[str] = Field(None, max_length=500)
+    images: Optional[List[Image]] = None
     videos: Optional[List[Video]] = None
-
-    @field_validator('titulo')
-    def limpiar_titulo(cls, v):
+    
+    @field_validator('title')
+    def clean_title(cls, v):
         return v.strip()
     
-
-
-# Schema de RESPUESTA
+# RESPONSE Schema
 class PostResponse(BaseModel):
     id: str = Field(..., alias="_id")
-    tipo: TipoPost
-    categoria: CategoriaPost
-    titulo: str
-    autor_id: str
-    autor_nombre: str
-    fecha_creacion: datetime
-    contenido: str
-    resumen: Optional[str] = None
-    imagenes: Optional[List[Imagen]] = None
+    type: PostType
+    category: PostCategory
+    title: str
+    author_id: str
+    author_name: str
+    creation_date: datetime
+    content: str
+    summary: Optional[str] = None
+    images: Optional[List[Image]] = None
     videos: Optional[List[Video]] = None
     
-    # Métricas
-    vistas: int = 0
+    # Metrics
+    views: int = 0
     likes: int = 0
     
-    # Comentarios/mensajes
-    comentarios: List[ComentarioReciente] = []
-    total_comentarios: int = 0
+    # Comments/messages
+    comments: List[LastComment] = []
+    total_comments: int = 0
+    
     class Config:
         populate_by_name = True
 
-# Schema para ACTUALIZAR discusión
+# Schema to UPDATE discussion
 class PostUpdate(BaseModel):
-
-    titulo: Optional[str] = Field(None, min_length=10, max_length=200)
-    contenido: Optional[str] = Field(None, min_length=10)
-    resumen: Optional[str] = Field(None, max_length=500)
-    categoria: Optional[CategoriaPost] = None
-    imagenes: Optional[List[Imagen]] = None
+    title: Optional[str] = Field(None, min_length=10, max_length=200)
+    content: Optional[str] = Field(None, min_length=10)
+    summary: Optional[str] = Field(None, max_length=500)
+    category: Optional[PostCategory] = None
+    images: Optional[List[Image]] = None
     videos: Optional[List[Video]] = None
-    cerrado: Optional[bool] = None
-
-    @field_validator('titulo')
-    def limpiar_titulo(cls, v):
+    closed: Optional[bool] = None
+    
+    @field_validator('title')
+    def clean_title(cls, v):
         if v:
             return v.strip()
         return v
-    
-
-
-    
