@@ -7,13 +7,13 @@ from enum import Enum
 #caché de los últimos comentarios
 class ComentarioReciente(BaseModel):
     id: str = Field(..., alias="_id")
-    usuario_id: str
-    usuario_nombre: str
-    texto: str
-    fecha: datetime
+    user_id: str
+    user_name: str
+    text: str
+    date: datetime
     likes: int = 0
-    archivo_adicional:Optional[List[str]] = None
-    valoracion: Optional[int] = Field(None, ge=1, le=5) #estrellas
+    additional_file:Optional[List[str]] = None
+    valoracion: Optional[int] = Field(None, ge=1, le=5) #stars
 
     class Config:
         populate_by_name = True
