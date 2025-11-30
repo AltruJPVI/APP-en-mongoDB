@@ -3,72 +3,70 @@ from typing import Optional, List
 from datetime import datetime
 from enum import Enum
 
-class NivelTenis(str, Enum):
-    principiante = "principiante"
-    intermedio = "intermedio"
-    avanzado = "avanzado"
+class TennisLevel(str, Enum):
+    beginner = "beginner"
+    intermediate = "intermediate"
+    advanced = "advanced"
 
-class TipoUsuario(str,Enum):
-    admin="admin"
-    empresa="empresa"
-    user="user"
+class UserType(str, Enum):
+    admin = "admin"
+    company = "company"
+    user = "user"
 
-class Ubicacion(BaseModel):
-    calle: Optional[str] = None
-    ciudad: Optional[str] = None
-    codigo_postal: Optional[str] = None
-    telefono: Optional[str] = None
+class Location(BaseModel):
+    street: Optional[str] = None
+    city: Optional[str] = None
+    postal_code: Optional[str] = None
+    phone: Optional[str] = None
 
-class ItemCarrito(BaseModel):
-    id_producto: str
-    nombre: str
-    precio: float
-    cantidad: int = 1
-    talla: Optional[str]=None
+class CartItem(BaseModel):
+    product_id: str
+    name: str
+    price: float
+    quantity: int = 1
+    size: Optional[str] = None
 
-class Estadisticas(BaseModel):
-    articulos_publicados: int = 0
-    eventos_creados: int = 0
-    posts_en_foros: int = 0
+class Statistics(BaseModel):
+    published_articles: int = 0
+    forum_posts: int = 0
 
 class UserCreate(BaseModel):
-    nombre: str = Field(..., min_length=2, max_length=100)
+    name: str = Field(..., min_length=2, max_length=100)
     email: EmailStr
-    clase: TipoUsuario=TipoUsuario.user
+    type: UserType = UserType.user
     password: str = Field(..., min_length=4)
-    nivel: NivelTenis = NivelTenis.principiante  # Por defecto principiante
-    ubicacion: Optional[Ubicacion] = None  # Opcional al registrarse
-
-    @field_validator('nombre')
-    def validar_nombre(cls, v):
-        return v.strip()  # Elimina espacios extra 
+    level: TennisLevel = TennisLevel.beginner  # Default beginner
+    location: Optional[Location] = None  # Optional at registration
+    
+    @field_validator('name')
+    def clean_name(cls, v):
+        return v.strip()  # Remove extra spaces
 
 class UserLogin(BaseModel):
     email: EmailStr
     password: str
 
-class UserResponse(BaseModel):#valida las respuestas por si acaso
-    id: str = Field(..., alias="_id")  # MongoDB usa _id, lo convertimos a id
-    nombre: str
+class UserResponse(BaseModel):  # Validates responses just in case
+    id: str = Field(..., alias="_id")  # MongoDB uses _id, we convert it to id
+    name: str
     email: EmailStr
-    clase:TipoUsuario
-    nivel: NivelTenis
-    ubicacion: Optional[Ubicacion] = None
-    fecha_registro: datetime
-    estadisticas: Optional[Estadisticas] = None
-    carrito: Optional[List[ItemCarrito]] = None
-
+    type: UserType
+    level: TennisLevel
+    location: Optional[Location] = None
+    registration_date: datetime
+    statistics: Optional[Statistics] = None
+    cart: Optional[List[CartItem]] = None
+    
     class Config:
-        populate_by_name = True  # Permite usar tanto _id como id
+        populate_by_name = True  # Allows using both _id and id
 
 class UserUpdate(BaseModel):
-    nombre: Optional[str] = Field(None, min_length=2, max_length=100)
-    nivel: Optional[NivelTenis] = None
-    ubicacion: Optional[Ubicacion] = None
-
-    @field_validator('nombre')
-    def validar_nombre(cls, v):
+    name: Optional[str] = Field(None, min_length=2, max_length=100)
+    level: Optional[TennisLevel] = None
+    location: Optional[Location] = None
+    
+    @field_validator('name')
+    def clean_name(cls, v):
         if v:
             return v.strip()
         return v
-    
