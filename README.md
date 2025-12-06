@@ -149,19 +149,23 @@ Set of MongoDB servers that maintain the same data:
 download the .zip and go to the that directory in the console
 ```bash
 
-docker-compose up -d                  # run containers
-docker-compose ps                #see if all containers runs
+docker compose up -d                  # run containers
+docker compose ps                #see if all containers runs
 curl http://localhost:5000       #try this endoint to see if flask works
-docker-compose logs -f api       #see the histoy of the app
+docker compose logs -f api       #see the histoy of the app
 
-docker-compose exec api python crear_datos.py #create and insert data
+docker compose exec api python crear_datos.py #create and insert data
 
-docker-compose exec mongo mongosh -u admin -p 123456 # Run mongo's terminal for querying
+docker compose exec mongo mongosh -u admin -p 123456 # Run mongo's terminal for querying
 write exit to shut down mongo's terminal
 
 Use the postam collection to try a basic pipeline to make posts, comments and orders 
 
 aditionally you can install mongoDB for VS Code if you want to try to query instead of using mongosh 
+
+how to save your data once inserted:
+
+docker exec tennis_mongo mongoexport --db=tienda_tenis --collection=users --username=admin --password=123456 --authenticationDatabase=admin --jsonArray > users.json
 
 ```
 
