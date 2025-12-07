@@ -1,4 +1,4 @@
-rom flask import Blueprint, request, jsonify, current_app
+from flask import Blueprint, request, jsonify, current_app
 from app.schemas.posts import PostCreate, PostResponse, PostUpdate
 from pydantic import ValidationError
 from bson import ObjectId
