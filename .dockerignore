@@ -1,0 +1,86 @@
+# Entorno virtual (lo más pesado - probablemente 5GB)
+venv/
+env/
+.venv/
+ENV/
+
+# Python cache
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+
+# Modelos de IA descargados (pueden ser varios GB)
+*.bin
+*.pt
+*.pth
+*.onnx
+*.h5
+.cache/
+.torch/
+models/
+checkpoints/
+
+# Git
+.git/
+.gitignore
+.gitattributes
+
+# IDEs
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.project
+.pydevproject
+
+# OS
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Docker
+Dockerfile
+docker-compose.yml
+.dockerignore
+*.dockerfile
+
+# Logs
+*.log
+logs/
+
+# Base de datos local
+*.db
+*.sqlite
+*.sqlite3
+data/
+
+# Testing
+tests/
+test_*.py
+*_test.py
+.pytest_cache/
+.coverage
+htmlcov/
+
+# Documentación
+README.md
+docs/
+*.md
+
+# Archivos temporales
+tmp/
+temp/
+*.tmp
+*.bak
+*.swp
+
+# Node (si tuvieras frontend)
+node_modules/
+npm-debug.log
+
+# Variables de entorno locales
+.env.local
+.env.development
