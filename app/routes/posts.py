@@ -1,8 +1,10 @@
-from flask import Blueprint, request, jsonify, current_app
+rom flask import Blueprint, request, jsonify, current_app
 from app.schemas.posts import PostCreate, PostResponse, PostUpdate
 from pydantic import ValidationError
 from bson import ObjectId
 from datetime import datetime, timezone
+from confluent_kafka import Producer
+import json
 
 # Create blueprint for posts
 bp = Blueprint('posts', __name__, url_prefix='/api/posts')
@@ -18,6 +20,29 @@ DELETE - delete post
 POST - give like post
 
 '''
+_producer = None
+
+def get_producer():
+    """Only when needed"""
+    global _producer
+    if _producer is None:
+        try:
+            conf = {'bootstrap.servers': 'kafka:9092'}
+            _producer = Producer(conf)
+            print(" Kafka producer connected")
+        except Exception as e:
+            print(f" Kafka not available: {e}")
+            return None
+
+    return _producer
+
+def delivery_report(err, msg):
+    """Callback para confirmar entrega de mensajes"""
+    if err is not None:
+        print(f' Message delivery failed: {err}')
+    else:
+        print(f' Message delivered to {msg.topic()} [{msg.partition()}]')
+
 
 # ==================== CREATE POST ====================
 
@@ -50,8 +75,37 @@ def create_post():
         post_dict['total_comments'] = 0
         
         # Insert into MongoDB
+        print("inserting new post...")
         result = current_app.db.posts.insert_one(post_dict)
         
+        producer=get_producer()
+        print("creating event...")
+        event = {
+            #for moderation
+            'post_id': str(result.inserted_id),
+            'content': post_data.content,
+            'title':post_data.title,
+
+            #for stats
+            'author_id': post_data.author_id,
+            'category': post_data.category,
+            'type':post_data.type,
+            'timestamp': post_dict['date'].isoformat()
+        }
+
+        try:
+            # Serializar el evento a JSON
+            message_value = json.dumps(event).encode('utf-8')
+            producer.produce(
+                'posts-created',
+                value=message_value,
+                callback=delivery_report
+            )
+            producer.flush()
+            print(f" Message sent to Kafka: {event['post_id']}")
+        except Exception as e:
+            print(f" Kafka error: {e}")
+            
         # Prepare response
         post_dict['_id'] = str(result.inserted_id)
         post_response = PostResponse(**post_dict)
