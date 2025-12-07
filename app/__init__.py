@@ -1,5 +1,5 @@
 from flask import Flask
-from app.extensiones import init_db
+from app.extensions import init_db
 from app.routes.auth import bp as bp_auth
 from app.routes.users import bp as bp_users
 from app.routes.comments import bp as bp_com
