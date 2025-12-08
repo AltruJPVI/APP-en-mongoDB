@@ -104,8 +104,8 @@ services:
       dockerfile: Dockerfile
     container_name: tennis_moderator
     environment:
-      - MONGO_URI=mongodb://admin:123456@mongo:27017/tienda_tenis?authSource=admin&replicaSet=rs0
-      - MONGO_DB_NAME=tienda_tenis
+      - MONGO_URI=mongodb://admin:123456@mongo:27017/tennis_shop?authSource=admin&replicaSet=rs0
+      - MONGO_DB_NAME=tennis_shop
       - KAFKA_BOOTSTRAP_SERVERS=kafka:9092
     depends_on:
       mongo:
