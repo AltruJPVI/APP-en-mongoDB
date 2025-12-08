@@ -89,5 +89,7 @@ for i in range(len(posts)-1,-1,-1):
     create_post= requests.post(url_post, json=body).json()
     posts.pop(n)
     input('\npress enter to continue posting\n')
+    print('------------------------------------------------')
+
 
 
