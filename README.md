@@ -154,7 +154,7 @@ docker compose ps                #see if all containers runs
 curl http://localhost:5000       #try this endoint to see if flask works
 docker compose logs -f api       #see the histoy of the app
 
-docker compose exec api python insert_datos.py # insert data
+docker compose exec api python -m insert_data # insert data
 
 docker compose exec mongo mongosh -u admin -p 123456 # Run mongo's terminal for querying
 write exit to shut down mongo's terminal
