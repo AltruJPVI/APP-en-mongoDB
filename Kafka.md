@@ -338,13 +338,27 @@ db.posts.find({ visible: true }).sort({ date: -1 })
 
 ---
 
-# **8. Final Notes**
+# **8. Reflections**
 
-This project successfully demonstrates a **real-time event-driven system** using:
 
-- Kafka as the streaming backbone  
-- MongoDB as the NoSQL database  
-- Flask as the application backend  
-- Detoxify as a lightweight AI moderation engine  
+### **Difficulties**
+- Configuring Kafka in KRaft mode (no Zookeeper)
+- Ensuring MongoDB replica set initialization inside Docker
+- Managing async behavior of Kafka producer
+- Ensuring the Detoxify model loads inside the consumer container
 
-The full pipeline is reproducible through Docker, and the architecture is modular, extensible, and aligned with modern data engineering practices.
+### **Strengths of Kafka + MongoDB**
+- Kafka ensures reliable, decoupled communication between API and moderation service  
+- MongoDB’s flexibility allows easy updates after moderation  
+- Real-time moderation becomes independent from API speed  
+- Horizontal scalability: more consumers → faster moderation  
+
+### **Limitations**
+- Single-node Kafka setup is not production-ready  
+- Detoxify model loads slowly  
+- Moderation consumer is not fault-tolerant without partitioning or consumer groups  
+
+### **Performance**
+- MongoDB handles frequent writes efficiently  
+- Kafka provides high ingestion rates  
+- Current consumer is single-threaded → manageable but not scalable for high loads  
