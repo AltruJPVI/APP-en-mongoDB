@@ -191,7 +191,7 @@ This is essential to demonstrate the real-time ingestion flow.
 ## **5.1 Start Docker Services**
 
 ```bash
-docker compose up --d
+docker compose up -d
 ```
 
 This launches:
